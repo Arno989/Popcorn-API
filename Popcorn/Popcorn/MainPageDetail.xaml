@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Popcorn.MainPageDetail"
+             Title="Movies">
+    <StackLayout>
+        <Grid Margin="8" HorizontalOptions="Start" VerticalOptions="Start">
+            
+            <Label Margin="16" Grid.Column ="0" Grid.Row="0" Text="Trending" HorizontalOptions="Start" VerticalOptions="Start" FontAttributes="Bold" FontSize="Large" TextColor="#000000" />
+
+            <ListView Margin="0" Grid.Column="0" Grid.Row="1" x:Name="lvwCards" SeparatorColor="Transparent" HorizontalOptions="Start" VerticalOptions="FillAndExpand" >
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="#000000" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </StackLayout>
+</ContentPage>
