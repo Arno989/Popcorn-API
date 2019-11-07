@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popcorn.Android", "Popcorn.Android\Popcorn.Android.csproj", "{8724A466-8EF7-4B96-87BC-638372138E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popcorn", "Popcorn\Popcorn.csproj", "{9691B5CE-C9B8-473B-ADED-AAB0F5691414}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8724A466-8EF7-4B96-87BC-638372138E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8724A466-8EF7-4B96-87BC-638372138E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8724A466-8EF7-4B96-87BC-638372138E02}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8724A466-8EF7-4B96-87BC-638372138E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8724A466-8EF7-4B96-87BC-638372138E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8724A466-8EF7-4B96-87BC-638372138E02}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9691B5CE-C9B8-473B-ADED-AAB0F5691414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9691B5CE-C9B8-473B-ADED-AAB0F5691414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9691B5CE-C9B8-473B-ADED-AAB0F5691414}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9691B5CE-C9B8-473B-ADED-AAB0F5691414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9691B5CE-C9B8-473B-ADED-AAB0F5691414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9691B5CE-C9B8-473B-ADED-AAB0F5691414}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DA0F3FB-22D2-468B-9691-60D51EB52DDF}
+	EndGlobalSection
+EndGlobal
