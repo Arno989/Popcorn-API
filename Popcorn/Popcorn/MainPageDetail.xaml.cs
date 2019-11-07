@@ -23,9 +23,36 @@ namespace Popcorn
 
         private async Task ShowTrendingMovies()
         {
+            
+
+
+
+
             List<Movie> Movies = await PopcornRepository.GetTrendingMoviesAsync("");
             lvwCards.ItemsSource = Movies;
         }
+
+        //bool hasAppearedOnce = false;
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+
+        //    if (!hasAppearedOnce)
+        //    {
+
+        //        hasAppearedOnce = true;
+        //        var padding = (1440 - lvwCards.Height) / 2;
+
+        //        lvwCards.HeightRequest = MessagesLayoutFrame.Width;
+        //        MessagesLayoutFrameInner.WidthRequest = MessagesLayoutFrame.Width;
+        //        MessagesLayoutFrameInner.Padding = new Thickness(0);
+        //        MessagesLayoutFrame.Padding = new Thickness(0);
+        //        MessagesLayoutFrame.IsClippedToBounds = true;
+        //        Xamarin.Forms.AbsoluteLayout.SetLayoutBounds(MessagesLayoutFrameInner, new Rectangle(0, 0 - padding, AbsoluteLayout.AutoSize, lvwCards.Height - padding));
+        //        MessagesLayoutFrameInner.IsClippedToBounds = true;
+        //        // */
+        //    }
+        //}
 
         private async Task Test()
         {

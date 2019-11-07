@@ -7,20 +7,45 @@
              x:Class="Popcorn.MainPageDetail"
              Title="Movies">
     <StackLayout>
-        <Grid Margin="8" HorizontalOptions="Start" VerticalOptions="Start">
-            
-            <Label Margin="16" Grid.Column ="0" Grid.Row="0" Text="Trending" HorizontalOptions="Start" VerticalOptions="Start" FontAttributes="Bold" FontSize="Large" TextColor="#000000" />
+        <Label Margin="16" Text="Trending" HorizontalOptions="StartAndExpand" VerticalOptions="Start" FontAttributes="Bold" FontSize="Large" TextColor="#000000" />
 
-            <ListView Margin="0" Grid.Column="0" Grid.Row="1" x:Name="lvwCards" SeparatorColor="Transparent" HorizontalOptions="Start" VerticalOptions="FillAndExpand" >
-                
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Label Grid.Column="0" Text="{Binding Name}" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="#000000" />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+        <AbsoluteLayout x:Name="MessagesLayoutFrame" Padding="0" HorizontalOptions="FillAndExpand">
+            <ContentView x:Name="MessagesLayoutFrameInner"  Padding="0"  HorizontalOptions="FillAndExpand">
+                <ListView Margin="0" x:Name="lvwCards" SeparatorColor="Transparent"  VerticalOptions="Fill"  SeparatorVisibility="None" Rotation="270" HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ContentView Rotation="90" Padding="12">
+                                    <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}" ></Image>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ContentView>
+        </AbsoluteLayout>
+
+
+
+
+        
+
+
+
+        <!--<Label Margin="16" Text="Popularity Last Added Year Title Rating" HorizontalOptions="StartAndExpand" VerticalOptions="Start" FontAttributes="Bold" FontSize="Large" TextColor="#000000" />
+
+        <ListView Margin="16, 0" x:Name="lvwCards" SeparatorColor="Transparent" HorizontalOptions="Start" VerticalOptions="StartAndExpand" >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Image Aspect="AspectFill" Source="{Binding Poster}"></Image>
+                            <Label Text="{Binding Title}" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="FillAndExpand" TextColor="#000000" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
     </StackLayout>
 </ContentPage>

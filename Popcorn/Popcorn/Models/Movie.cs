@@ -28,8 +28,8 @@ namespace Popcorn.Models
         //step in objects
         //[JsonProperty(propertyName: "torrents")]
         //public MovieTorrent Torrent { get; set; }
-        //[JsonProperty(propertyName: "images")]
-        //public Thumbnail Images { get; set; }
+        [JsonProperty(propertyName: "images")]
+        public Thumbnail Images { get; set; }
         //[JsonProperty(propertyName: "rating")]
         //public Rating Rates { get; set; }
 
