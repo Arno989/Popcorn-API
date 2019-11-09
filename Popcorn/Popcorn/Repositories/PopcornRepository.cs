@@ -102,13 +102,13 @@ namespace Popcorn.Repositories
         //possible site to retrieve the images from: https://myanimelist.net of https://kitsu.io/anime/one-punch-man
         #endregion
 
-        public static async Task<List<Movie>> GetTrendingMoviesAsync(string keyword)
+        public static async Task<List<Movie>> GetMoviesAsync(string keyword, string sortby)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-                String url = string.Format("{0}{1}?sort=trending&keywords={2}", MOVIEPAGE, 1, keyword);
+                String url = string.Format("{0}{1}?sort={3}&keywords={2}", MOVIEPAGE, 1, keyword, sortby);
                 String json = await client.GetStringAsync(url);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
@@ -158,13 +158,13 @@ namespace Popcorn.Repositories
             }
         }
 
-        public static async Task<List<Series>> GetTrendingSeriesAsync(string keyword)
+        public static async Task<List<Series>> GetSeriesAsync(string keyword, string sortby)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-                String url = string.Format("{0}{1}?sort=trending&keywords={2}", SHOWSPAGE, 1, keyword);
+                String url = string.Format("{0}{1}?sort={3}&keywords={2}", SHOWSPAGE, 1, keyword, sortby);
                 String json = await client.GetStringAsync(url);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
@@ -214,13 +214,13 @@ namespace Popcorn.Repositories
             }
         }
 
-        public static async Task<List<Anime>> GetTrendingAnimeAsync(string keyword)
+        public static async Task<List<Anime>> GetAnimeAsync(string keyword, string sortby)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-                String url = string.Format("{0}{1}?sort=trending&keywords={2}", ANIMEPAGE, 1, keyword);
+                String url = string.Format("{0}{1}?sort={3}&keywords={2}", ANIMEPAGE, 1, keyword, sortby);
                 String json = await client.GetStringAsync(url);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)

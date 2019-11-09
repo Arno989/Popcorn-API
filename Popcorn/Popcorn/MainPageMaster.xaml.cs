@@ -33,7 +33,7 @@ namespace Popcorn
             {
                 MenuItems = new ObservableCollection<MainPageMasterMenuItem>(new[]
                 {
-                    new MainPageMasterMenuItem { Id = 0, Title = "Movies" },
+                    new MainPageMasterMenuItem { Id = 0, Title = "Movies"},
                     new MainPageMasterMenuItem { Id = 1, Title = "Series" },
                     new MainPageMasterMenuItem { Id = 2, Title = "Anime" },
                 });

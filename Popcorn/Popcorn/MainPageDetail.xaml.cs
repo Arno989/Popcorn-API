@@ -17,19 +17,19 @@ namespace Popcorn
         public MainPageDetail()
         {
             InitializeComponent();
-            ShowTrendingMovies();
+            ShowMovies();
             //Test();
         }
 
-        private async Task ShowTrendingMovies()
+        private async Task ShowMovies()
         {
-            
-
-
-
-
-            List<Movie> Movies = await PopcornRepository.GetTrendingMoviesAsync("");
-            lvwCards.ItemsSource = Movies;
+            lvwTrending.ItemsSource = await PopcornRepository.GetMoviesAsync("", "trending");
+            lvwPopularity.ItemsSource = await PopcornRepository.GetMoviesAsync("", "popularity");
+            lvwLastAdded.ItemsSource = await PopcornRepository.GetMoviesAsync("", "last added");
+            lvwYear.ItemsSource = await PopcornRepository.GetMoviesAsync("", "year");
+            lvwTitle.ItemsSource = await PopcornRepository.GetMoviesAsync("", "title");
+            lvwRating.ItemsSource = await PopcornRepository.GetMoviesAsync("", "rating");
+            lvwExtra.ItemsSource = await PopcornRepository.GetMoviesAsync("", "trending");
         }
 
         //bool hasAppearedOnce = false;
@@ -60,7 +60,7 @@ namespace Popcorn
             List<Series> Series = new List<Series>();
             List<Anime> Animes = new List<Anime>();
 
-            Movies = await PopcornRepository.GetTrendingMoviesAsync("");
+            Movies = await PopcornRepository.GetMoviesAsync("", "trending");
             Movie SingleMovie = await PopcornRepository.GetSingleMovieAsync("tt1431045");
             Series = await PopcornRepository.GetTrendingSeriesAsync("");
             Series SingleSeries = await PopcornRepository.GetSingleSeriesAsync("tt0898266");

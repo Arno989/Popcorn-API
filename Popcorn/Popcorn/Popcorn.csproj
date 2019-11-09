@@ -6,6 +6,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Heart.png" />
+    <None Remove="Assets\PopcornTimeDefaultImage.png" />
+    <None Remove="Assets\PopcornTimeLogo.png" />
+    <None Remove="Assets\Rating.png" />
+    <None Remove="Assets\Watched.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Heart.png" />
+    <EmbeddedResource Include="Assets\PopcornTimeDefaultImage.png" />
+    <EmbeddedResource Include="Assets\PopcornTimeLogo.png" />
+    <EmbeddedResource Include="Assets\Rating.png" />
+    <EmbeddedResource Include="Assets\Watched.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
@@ -28,6 +44,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SeriesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SingleMoviePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SingleSeriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
