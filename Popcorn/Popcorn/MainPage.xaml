@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Popcorn.MainPage"
+             xmlns:view="clr-namespace:Popcorn.Views"
              xmlns:pages="clr-namespace:Popcorn">
   <MasterDetailPage.Master>
     <pages:MainPageMaster x:Name="MasterPage" />
@@ -12,7 +13,7 @@
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:MainPageDetail />
+        <view:MoviesPage />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>

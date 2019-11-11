@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Popcorn.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -49,6 +50,22 @@ namespace Popcorn
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             #endregion
+        }
+
+        private void MenuItemsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            switch ((e.SelectedItem as MainPageMasterMenuItem).Title)
+            {
+                case "Movies":
+                    ((MasterDetailPage)Parent).Detail = new NavigationPage(new MoviesPage());
+                    break;
+                case "Series":
+                    ((MasterDetailPage)Parent).Detail = new NavigationPage(new SeriesPage());
+                    break;
+                case "Anime":
+                    ((MasterDetailPage)Parent).Detail = new NavigationPage(new AnimePage());
+                    break;
+            }
         }
     }
 }

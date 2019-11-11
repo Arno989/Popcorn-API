@@ -61,11 +61,11 @@ namespace Popcorn
             List<Anime> Animes = new List<Anime>();
 
             Movies = await PopcornRepository.GetMoviesAsync("", "trending");
-            Movie SingleMovie = await PopcornRepository.GetSingleMovieAsync("tt1431045");
-            Series = await PopcornRepository.GetTrendingSeriesAsync("");
-            Series SingleSeries = await PopcornRepository.GetSingleSeriesAsync("tt0898266");
-            Animes = await PopcornRepository.GetTrendingAnimeAsync("");
-            Anime SingleAnime = await PopcornRepository.GetSingleAnimeAsync("11844");
+            //Movie SingleMovie = await PopcornRepository.GetSingleMovieAsync("tt1431045");
+            //Series = await PopcornRepository.GetSeriesAsync("");
+            //Series SingleSeries = await PopcornRepository.GetSingleSeriesAsync("tt0898266");
+            //Animes = await PopcornRepository.GetAnimeAsync("");
+            //Anime SingleAnime = await PopcornRepository.GetSingleAnimeAsync("11844");
         }
         
     }

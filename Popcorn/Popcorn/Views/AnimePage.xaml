@@ -4,8 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Popcorn.Views.MoviesPage"
-             Title="Movies">
+             x:Class="Popcorn.Views.AnimePage">
     <ContentPage.Content>
         <StackLayout>
             <Picker x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">

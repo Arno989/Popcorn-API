@@ -18,55 +18,26 @@ namespace Popcorn.Views
         public MoviesPage()
         {
             InitializeComponent();
-            ShowMovies();
-            //Test();
+            Init();
+            pickSort.SelectedItem = "Trending";
         }
 
-        private async Task ShowMovies()
+        private void Init()
         {
-            lvwTrending.ItemsSource = await PopcornRepository.GetMoviesAsync("", "trending");
-            //lvwPopularity.ItemsSource = await PopcornRepository.GetMoviesAsync("", "popularity");
-            //lvwLastAdded.ItemsSource = await PopcornRepository.GetMoviesAsync("", "last added");
-            //lvwYear.ItemsSource = await PopcornRepository.GetMoviesAsync("", "year");
-            //lvwTitle.ItemsSource = await PopcornRepository.GetMoviesAsync("", "title");
-            //lvwRating.ItemsSource = await PopcornRepository.GetMoviesAsync("", "rating");
+            foreach (String s in PopcornRepository.SERIESORTLIST)
+            {
+                pickSort.Items.Add(s);
+            }
         }
 
-        //bool hasAppearedOnce = false;
-        //protected override void OnAppearing()
-        //{
-        //    base.OnAppearing();
-
-        //    if (!hasAppearedOnce)
-        //    {
-
-        //        hasAppearedOnce = true;
-        //        var padding = (1440 - lvwCards.Height) / 2;
-
-        //        lvwCards.HeightRequest = MessagesLayoutFrame.Width;
-        //        MessagesLayoutFrameInner.WidthRequest = MessagesLayoutFrame.Width;
-        //        MessagesLayoutFrameInner.Padding = new Thickness(0);
-        //        MessagesLayoutFrame.Padding = new Thickness(0);
-        //        MessagesLayoutFrame.IsClippedToBounds = true;
-        //        Xamarin.Forms.AbsoluteLayout.SetLayoutBounds(MessagesLayoutFrameInner, new Rectangle(0, 0 - padding, AbsoluteLayout.AutoSize, lvwCards.Height - padding));
-        //        MessagesLayoutFrameInner.IsClippedToBounds = true;
-        //        
-        //    }
-        //}
-
-        private async Task Test()
+        private async Task ShowContent(String sort)
         {
-            List<Movie> Movies = new List<Movie>();
-            List<Series> Series = new List<Series>();
-            List<Anime> Animes = new List<Anime>();
-
-            Movies = await PopcornRepository.GetMoviesAsync("", "trending");
-            Movie SingleMovie = await PopcornRepository.GetSingleMovieAsync("tt1431045");
-            Series = await PopcornRepository.GetTrendingSeriesAsync("");
-            Series SingleSeries = await PopcornRepository.GetSingleSeriesAsync("tt0898266");
-            Animes = await PopcornRepository.GetTrendingAnimeAsync("");
-            Anime SingleAnime = await PopcornRepository.GetSingleAnimeAsync("11844");
+            lvwContent.ItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
         }
 
+        private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowContent(pickSort.SelectedItem.ToString());
+        }
     }
 }
