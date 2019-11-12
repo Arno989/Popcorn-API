@@ -2,6 +2,7 @@
 using Popcorn.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,12 @@ namespace Popcorn.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SingleMoviePage : ContentPage
     {
-        public SingleMoviePage(string ImdbId)
+        Movie Context;
+        public SingleMoviePage(Movie pContext)
         {
             InitializeComponent();
-            Test(ImdbId);
+            Context = pContext;
+            Test(Context.ImdbId);
         }
 
         private async Task Test(string ImdbId)
@@ -27,7 +30,11 @@ namespace Popcorn.Views
             year.Text = movie.Year;
             synopsis.Text = movie.Synopsis;
             runtime.Text = movie.Runtime;
-            trailer.Text = movie.Trailer;
+        }
+
+        private void btnTrailer_Clicked(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(Context.Trailer));
         }
     }
 }

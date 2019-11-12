@@ -18,7 +18,10 @@
                     <DataTemplate>
                         <ViewCell Height="750">
                             <ContentView Margin="10">
+                                <Grid>
                                 <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                                <Label Text="{Binding Title}"></Label>
+                                </Grid>
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>

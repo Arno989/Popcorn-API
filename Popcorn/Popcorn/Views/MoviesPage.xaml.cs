@@ -39,5 +39,13 @@ namespace Popcorn.Views
         {
             ShowContent(pickSort.SelectedItem.ToString());
         }
+        private void lvwContent_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                Navigation.PushAsync(new SingleMoviePage((Movie)e.SelectedItem));
+                ((ListView)sender).SelectedItem = null;
+            }
+        }
     }
 }

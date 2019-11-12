@@ -14,7 +14,7 @@
                 </Picker.Items>
             </Picker>
 
-            <ListView  Margin="0" x:Name="lvwContent" SeparatorColor="Transparent"  VerticalOptions="Start"  SeparatorVisibility="None" HorizontalOptions="Start" HasUnevenRows="True" VerticalScrollBarVisibility="Never">
+            <ListView  Margin="0" x:Name="lvwContent" SeparatorColor="Transparent"  VerticalOptions="Start"  SeparatorVisibility="None" HorizontalOptions="Start" HasUnevenRows="True" VerticalScrollBarVisibility="Never" ItemSelected="lvwContent_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="750">

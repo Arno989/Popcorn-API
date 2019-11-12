@@ -1,4 +1,5 @@
-﻿using Popcorn.Repositories;
+﻿using Popcorn.Models;
+using Popcorn.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,5 +38,7 @@ namespace Popcorn.Views
         {
             ShowContent(pickSort.SelectedItem.ToString());
         }
+
+        
     }
 }
