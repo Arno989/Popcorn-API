@@ -20,7 +20,7 @@
                             <ContentView Margin="10">
                                 <Grid>
                                 <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
-                                <Label Text="{Binding Title}"></Label>
+                                <Label Text="{Binding Title}" TextColor="black"></Label>
                                 </Grid>
                             </ContentView>
                         </ViewCell>

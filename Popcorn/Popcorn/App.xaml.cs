@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLToolkit.Forms.Controls;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +10,8 @@ namespace Popcorn
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
+            FlowListView.Init();
         }
 
         protected override void OnStart()

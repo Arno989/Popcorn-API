@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:xf="clr-namespace:Popcorn.Models"
              mc:Ignorable="d"
              x:Class="Popcorn.Views.MoviesPage"
              Title="Movies">
@@ -14,17 +16,40 @@
                 </Picker.Items>
             </Picker>
 
-            <ListView  Margin="0" x:Name="lvwContent" SeparatorColor="Transparent"  VerticalOptions="Start"  SeparatorVisibility="None" HorizontalOptions="Start" HasUnevenRows="True" VerticalScrollBarVisibility="Never" ItemSelected="lvwContent_ItemSelected">
+            <flv:FlowListView xmlns:xf="AutoSizeBehavior" x:Name="flvwContent" FlowColumnCount="2" SeparatorVisibility="None" HasUnevenRows="True" HorizontalOptions="Start" VerticalScrollBarVisibility="Never" ItemSelected="flvwContent_ItemSelected">
+                <flv:FlowListView.Behaviors>
+                    <!--<xf:AutoSizeBehavior />-->
+                </flv:FlowListView.Behaviors>
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate >
+                        <ContentView  Margin="5">
+                            <Image VerticalOptions="FillAndExpand" Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                        </ContentView>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+
+            <!--<ListView  Margin="0" x:Name="lvwContent" SeparatorColor="Transparent"  VerticalOptions="Start"  SeparatorVisibility="None" HorizontalOptions="Start" HasUnevenRows="True" VerticalScrollBarVisibility="Never" ItemSelected="lvwContent_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="750">
-                            <ContentView Margin="10">
-                                <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
-                            </ContentView>
+                        <ViewCell Height="300">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*"></ColumnDefinition>
+                                    <ColumnDefinition Width="50*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ContentView>
+                                    <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                                </ContentView>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

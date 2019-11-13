@@ -1,4 +1,5 @@
-﻿using Popcorn.Models;
+﻿using DLToolkit.Forms.Controls;
+using Popcorn.Models;
 using Popcorn.Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Popcorn.Views
         public MoviesPage()
         {
             InitializeComponent();
+            FlowListView.Init();
             Init();
             pickSort.SelectedItem = "Trending";
         }
@@ -32,14 +34,17 @@ namespace Popcorn.Views
 
         private async Task ShowContent(String sort)
         {
-            lvwContent.ItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
+            flvwContent.FlowItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
         }
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowContent(pickSort.SelectedItem.ToString());
         }
-        private void lvwContent_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+
+        
+
+        private void flvwContent_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
             {
