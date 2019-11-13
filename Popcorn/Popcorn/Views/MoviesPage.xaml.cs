@@ -18,6 +18,7 @@ namespace Popcorn.Views
     {
         public MoviesPage()
         {
+            //SetFlags("CollectionView_Experimental");
             InitializeComponent();
             FlowListView.Init();
             Init();
@@ -31,10 +32,17 @@ namespace Popcorn.Views
                 pickSort.Items.Add(s);
             }
         }
+        
 
         private async Task ShowContent(String sort)
         {
-            flvwContent.FlowItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
+            cvContent.ItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
+
+            //flvwContent.FlowItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
+            //flvwContent.HasUnevenRows = true;
+            
+                
+
         }
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,11 +54,22 @@ namespace Popcorn.Views
 
         private void flvwContent_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem != null)
-            {
-                Navigation.PushAsync(new SingleMoviePage((Movie)e.SelectedItem));
-                ((ListView)sender).SelectedItem = null;
-            }
+            //if (e.SelectedItem != null)
+            //{
+            //    Navigation.PushAsync(new SingleMoviePage((Movie)e.SelectedItem));
+            //    ((ListView)sender).SelectedItem = null;
+            //}
+        }
+
+        private void ViewCell_Tapped(object sender, EventArgs e)
+        {
+            ViewCell v = sender as ViewCell;
+            v.ForceUpdateSize();
+        }
+
+        private void cvContent_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
+        {
+            lblyeet.Text = ((Movie)e.CurrentItem).Title;
         }
     }
 }

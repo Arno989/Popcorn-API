@@ -4,30 +4,41 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
-             xmlns:xf="clr-namespace:Popcorn.Models"
              mc:Ignorable="d"
              x:Class="Popcorn.Views.MoviesPage"
              Title="Movies">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
             <Picker x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
                 <Picker.Items>
 
                 </Picker.Items>
             </Picker>
 
-            <flv:FlowListView xmlns:xf="AutoSizeBehavior" x:Name="flvwContent" FlowColumnCount="2" SeparatorVisibility="None" HasUnevenRows="True" HorizontalOptions="Start" VerticalScrollBarVisibility="Never" ItemSelected="flvwContent_ItemSelected">
-                <flv:FlowListView.Behaviors>
-                    <!--<xf:AutoSizeBehavior />-->
-                </flv:FlowListView.Behaviors>
+            <CarouselView x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        
+
+                        <ContentView>
+                            <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                        </ContentView>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <flv:FlowListView x:Name="flvwContent" FlowColumnCount="2" SeparatorVisibility="None" HasUnevenRows="False" HorizontalOptions="Start" VerticalScrollBarVisibility="Never" ItemSelected="flvwContent_ItemSelected">
                 <flv:FlowListView.FlowColumnTemplate>
-                    <DataTemplate >
-                        <ContentView  Margin="5">
-                            <Image VerticalOptions="FillAndExpand" Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                    <DataTemplate>
+                        <ContentView Margin="5">
+                            <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
                         </ContentView>
                     </DataTemplate>
                 </flv:FlowListView.FlowColumnTemplate>
+                
             </flv:FlowListView>
+
+            <Label x:Name="lblyeet" Text="Trending" Margin="16" TextColor="Black" FontSize="Large"></Label>
 
             <!--<ListView  Margin="0" x:Name="lvwContent" SeparatorColor="Transparent"  VerticalOptions="Start"  SeparatorVisibility="None" HorizontalOptions="Start" HasUnevenRows="True" VerticalScrollBarVisibility="Never" ItemSelected="lvwContent_ItemSelected">
                 <ListView.ItemTemplate>

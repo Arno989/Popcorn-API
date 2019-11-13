@@ -7,8 +7,11 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+
+
 namespace Popcorn.Droid
 {
+
     [Activity(Label = "Popcorn", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -19,7 +22,8 @@ namespace Popcorn.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState); 
+            global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
