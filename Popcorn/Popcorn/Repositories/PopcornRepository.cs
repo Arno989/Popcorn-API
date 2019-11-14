@@ -116,7 +116,7 @@ namespace Popcorn.Repositories
             try
             {
                 HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("Accept",Encoding.UTF8, "application/json");
                 String url = string.Format("{0}{1}?sort={3}&keywords={2}", SHOWSPAGE, 1, keyword, sortby);
                 String json = await client.GetStringAsync(url);
                 Debug.WriteLine("Json: " + json);

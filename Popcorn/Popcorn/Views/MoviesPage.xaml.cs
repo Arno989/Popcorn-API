@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -36,18 +36,21 @@ namespace Popcorn.Views
 
         private async Task ShowContent(String sort)
         {
-            cvContent.ItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
+            List<Movie> content = await PopcornRepository.GetMoviesAsync("", sort);
+            cvContent.ItemsSource = content;
+            cvContent.CurrentItem = content[0];
 
             //flvwContent.FlowItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
             //flvwContent.HasUnevenRows = true;
-            
-                
+
+
 
         }
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowContent(pickSort.SelectedItem.ToString());
+
         }
 
         
@@ -70,6 +73,17 @@ namespace Popcorn.Views
         private void cvContent_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
         {
             lblyeet.Text = ((Movie)e.CurrentItem).Title;
+            year.Text = ((Movie)e.CurrentItem).Year;
+            synopsis.Text = ((Movie)e.CurrentItem).Synopsis;
+            runtime.Text = ((Movie)e.CurrentItem).Runtime;
+        }
+
+        private void btnTrailer_Clicked(object sender, EventArgs e)
+        {
+            Movie context = cvContent.CurrentItem as Movie;
+            Device.OpenUri(new Uri(context.Trailer)); //Launcher.CanOpenAsync
+
+
         }
     }
 }

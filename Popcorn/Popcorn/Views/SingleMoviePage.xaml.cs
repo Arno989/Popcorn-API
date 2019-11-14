@@ -34,7 +34,7 @@ namespace Popcorn.Views
 
         private void btnTrailer_Clicked(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri(Context.Trailer));
+            //Device.OpenUri(new Uri(Context.Trailer));
         }
     }
 }
