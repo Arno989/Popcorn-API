@@ -9,11 +9,15 @@
              Title="Movies">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
-            <Picker x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
+            <Grid>
+                <Editor x:Name="eSearch" Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search"></Editor>
+            <Picker Grid.Column="0" Grid.Row="1" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
                 <Picker.Items>
 
                 </Picker.Items>
             </Picker>
+                <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Search" Clicked="btnSearch_Clicked"></Button>
+            </Grid>
 
             <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
                 <CarouselView.ItemTemplate>
@@ -26,49 +30,16 @@
             </CarouselView>
 
             
-            <Label x:Name="lblyeet" Text="Trending" Margin="16" TextColor="Black" FontSize="Large"></Label>
+            <Label x:Name="lblTitle" Text="title" Margin="16" TextColor="Black" FontSize="Large"></Label>
 
             <Grid>
-                <Label Grid.Row="0" HorizontalOptions="Start" x:Name="year" Text="year" VerticalOptions="Start"/>
-                <Label Grid.Row="1" HorizontalOptions="Start" x:Name="synopsis" Text="synopsis" VerticalOptions="Start"/>
-                <Label Grid.Row="2" HorizontalOptions="Start" x:Name="runtime" Text="runtime" VerticalOptions="Start"/>
+                <Label Grid.Row="0" HorizontalOptions="Start" x:Name="lblYear" Text="year" VerticalOptions="Start"/>
+                <Label Grid.Row="1" HorizontalOptions="Start" x:Name="lblSynopsis" Text="synopsis" VerticalOptions="Start"/>
+                <Label Grid.Row="2" HorizontalOptions="Start" x:Name="lblRuntime" Text="runtime" VerticalOptions="Start"/>
             </Grid>
-            
+
             <Button VerticalOptions="EndAndExpand" x:Name="btnTrailer" Clicked="btnTrailer_Clicked" Text="Trailer"></Button>
-
-
-
-            <!--<ListView  Margin="0" x:Name="lvwContent" SeparatorColor="Transparent"  VerticalOptions="Start"  SeparatorVisibility="None" HorizontalOptions="Start" HasUnevenRows="True" VerticalScrollBarVisibility="Never" ItemSelected="lvwContent_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell Height="300">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50*"></ColumnDefinition>
-                                    <ColumnDefinition Width="50*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <ContentView>
-                                    <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
-                                </ContentView>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-
-            <!--<flv:FlowListView x:Name="flvwContent" FlowColumnCount="2" SeparatorVisibility="None" HasUnevenRows="False" HorizontalOptions="Start" VerticalScrollBarVisibility="Never" ItemSelected="flvwContent_ItemSelected">
-                <flv:FlowListView.FlowColumnTemplate>
-                    <DataTemplate>
-                        <ContentView Margin="5">
-                            <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
-                        </ContentView>
-                    </DataTemplate>
-                </flv:FlowListView.FlowColumnTemplate>
-            </flv:FlowListView>-->
-
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

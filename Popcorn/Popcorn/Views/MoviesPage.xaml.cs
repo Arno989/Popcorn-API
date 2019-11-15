@@ -18,50 +18,34 @@ namespace Popcorn.Views
     {
         public MoviesPage()
         {
-            //SetFlags("CollectionView_Experimental");
             InitializeComponent();
-            FlowListView.Init();
+
             Init();
             pickSort.SelectedItem = "Trending";
         }
 
         private void Init()
         {
-            foreach (String s in PopcornRepository.SERIESORTLIST)
+            foreach (String s in PopcornRepository.MOVIESORTLIST)
             {
                 pickSort.Items.Add(s);
             }
         }
         
 
-        private async Task ShowContent(String sort)
+        private async Task ShowContent(String sort, String search)
         {
-            List<Movie> content = await PopcornRepository.GetMoviesAsync("", sort);
+            List<Movie> content = await PopcornRepository.GetMoviesAsync(search, sort);
             cvContent.ItemsSource = content;
-            cvContent.CurrentItem = content[0];
-
-            //flvwContent.FlowItemsSource = await PopcornRepository.GetMoviesAsync("", sort);
-            //flvwContent.HasUnevenRows = true;
-
-
-
+            cvContent.CurrentItem = cvContent[0];
         }
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowContent(pickSort.SelectedItem.ToString());
-
-        }
-
-        
-
-        private void flvwContent_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            //if (e.SelectedItem != null)
-            //{
-            //    Navigation.PushAsync(new SingleMoviePage((Movie)e.SelectedItem));
-            //    ((ListView)sender).SelectedItem = null;
-            //}
+            if(eSearch.Text == null)
+            {
+                ShowContent(pickSort.SelectedItem.ToString(), "");
+            }
         }
 
         private void ViewCell_Tapped(object sender, EventArgs e)
@@ -72,18 +56,21 @@ namespace Popcorn.Views
 
         private void cvContent_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
         {
-            lblyeet.Text = ((Movie)e.CurrentItem).Title;
-            year.Text = ((Movie)e.CurrentItem).Year;
-            synopsis.Text = ((Movie)e.CurrentItem).Synopsis;
-            runtime.Text = ((Movie)e.CurrentItem).Runtime;
+            lblTitle.Text = ((Movie)e.CurrentItem).Title;
+            lblYear.Text = ((Movie)e.CurrentItem).Year;
+            lblSynopsis.Text = ((Movie)e.CurrentItem).Synopsis;
+            lblRuntime.Text = ((Movie)e.CurrentItem).Runtime;
         }
 
         private void btnTrailer_Clicked(object sender, EventArgs e)
         {
             Movie context = cvContent.CurrentItem as Movie;
             Device.OpenUri(new Uri(context.Trailer)); //Launcher.CanOpenAsync
+        }
 
-
+        private void btnSearch_Clicked(object sender, EventArgs e)
+        {
+            ShowContent(pickSort.SelectedItem.ToString(), eSearch.Text);
         }
     }
 }
