@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Popcorn.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ using Xamarin.Forms.Xaml;
 namespace Popcorn.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SingleAnimePage : ContentPage
+    public partial class EpisodesPage : ContentPage
     {
-        public SingleAnimePage()
+        public EpisodesPage(Series context, int season)
         {
             InitializeComponent();
         }

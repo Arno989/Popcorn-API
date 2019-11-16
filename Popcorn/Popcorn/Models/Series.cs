@@ -11,8 +11,6 @@ namespace Popcorn.Models
         public string Id { get; set; }
         [JsonProperty(propertyName: "imdb_id")]
         public string Imdb_Id { get; set; }
-        [JsonProperty(propertyName: "tvdb_id")]
-        public string Tvdb_Id { get; set; }
         [JsonProperty(propertyName: "title")]
         public string Title { get; set; }
         [JsonProperty(propertyName: "year")]
@@ -23,5 +21,26 @@ namespace Popcorn.Models
         public Rating Rates { get; set; }
         [JsonProperty(propertyName: "images")]
         public Thumbnail Images { get; set; }
+
+        //lblSynopsis = s.;
+        //lblRuntime = ;
+        //lblStatus = ;
+        //lblRuntime = ;
+        [JsonProperty(propertyName: "genres")]
+        public List<string> Genres { get; set; }
+        [JsonProperty(propertyName: "synopsis")]
+        public string Synopsis { get; set; }
+        [JsonProperty(propertyName: "runtime")] //duration in mins
+        public string Runtime { get; set; }
+        [JsonProperty(propertyName: "status")]
+        public string Status { get; set; }
+        [JsonProperty(propertyName: "air_time")]
+        public string AirTime { get; set; }
+        [JsonProperty(propertyName: "air_day")]
+        public string AirDay { get; set; }
+        [JsonProperty(propertyName: "country")]
+        public string Country { get; set; }
+        [JsonProperty(propertyName: "episodes")]
+        public List<Episode> Episodes { get; set; }
     }
 }

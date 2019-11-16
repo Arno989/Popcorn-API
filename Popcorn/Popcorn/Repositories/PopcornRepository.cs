@@ -63,6 +63,7 @@ namespace Popcorn.Repositories
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 String url = string.Format("{0}{1}?sort={3}&keywords={2}", MOVIEPAGE, 1, keyword, sortby);
                 String json = await client.GetStringAsync(url);
+                json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
                 {
@@ -91,6 +92,7 @@ namespace Popcorn.Repositories
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 String url = string.Format("{0}{1}", SPECIFICMOVIE, Imbd_Id);
                 String json = await client.GetStringAsync(url);
+                json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
                 {
@@ -115,10 +117,12 @@ namespace Popcorn.Repositories
         {
             try
             {
-                HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Add("Accept", "application/json"); //Encoding.UTF8,
+                HttpClient client = new HttpClient() { };
+                //client.DefaultRequestHeaders.Add("Accept", "application/json; charset=ut-8"); //Encoding.UTF8,
+                client.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json; charset=ut-8"); //Encoding.UTF8,
                 String url = string.Format("{0}{1}?sort={3}&keywords={2}", SHOWSPAGE, 1, keyword, sortby);
                 String json = await client.GetStringAsync(url);
+                json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
                 {
@@ -147,6 +151,7 @@ namespace Popcorn.Repositories
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 String url = string.Format("{0}{1}", SPECIFICSHOW, Imdb_Id);
                 String json = await client.GetStringAsync(url);
+                json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
                 {
@@ -175,6 +180,7 @@ namespace Popcorn.Repositories
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 String url = string.Format("{0}{1}?sort={3}&keywords={2}", ANIMEPAGE, 1, keyword, sortby);
                 String json = await client.GetStringAsync(url);
+                json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
                 {
@@ -208,6 +214,7 @@ namespace Popcorn.Repositories
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 String url = string.Format("{0}{1}", SPECIFICANIME, Id);
                 String json = await client.GetStringAsync(url);
+                json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 if (json != null)
                 {
@@ -228,47 +235,74 @@ namespace Popcorn.Repositories
             }
         }
 
+
+
+
         public static async Task<Thumbnail> GetAnimeThubnailsAsync(string id)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-                String url = string.Format("https://api.jikan.moe/v3/anime/{0}/pictures", id);
-                String json = await client.GetStringAsync(url);
+                String url = string.Format("https://api.jikan.moe/v3/anime/{0}/pictures/", id);
+                String json;
+                Thumbnail pics = new Thumbnail();
+                try
+                {
+                    json = await client.GetStringAsync(url);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("json response failed: " + ex.Message);
+
+                    pics.FanArt = "";
+                    pics.Banner = "";
+                    pics.Poster = "";
+
+                    goto end;
+                    throw ex;
+                }
+
+                json = json.Replace("\\", "");
+                json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
-                if (json != null)
-                {
-                    Thumbnail pics = new Thumbnail();
-                    JObject obj = JObject.Parse(json);
+                JObject obj = JObject.Parse(json);
 
-                    pics.Poster = (string)obj.SelectToken("pictures[0].large");
-                    try
-                    {
-                        pics.FanArt = (string)obj.SelectToken("pictures[1].large");
-                        pics.Banner = (string)obj.SelectToken("pictures[2].large");
-                    }
-                    catch (Exception ex)
-                    {
-                        pics.FanArt = "";
-                        pics.Banner = "";
-                        throw ex;
-                    }
-                    
+                String string1 = (string)obj.SelectToken("pictures[0].large");
+                String string2 = (string)obj.SelectToken("pictures[1].large");
+                String string3 = (string)obj.SelectToken("pictures[2].large");
 
-                    return pics;
-                }
+                if (string1 != null)
+                    pics.Poster = string1;
                 else
-                {
-                    Debug.WriteLine("Error, no data recieved.");
-                    return null;
-                }
+                    pics.Poster = "";
+
+                if (string1 != null)
+                    pics.FanArt = string1;
+                else
+                    pics.FanArt = "";
+
+                if (string1 != null)
+                    pics.Banner = string1;
+                else
+                    pics.Banner = "";
+
+                end:
+                return pics;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Try-Catch methode failed: " + ex);
                 throw ex;
             }
+        }
+
+        public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
         }
 
     }

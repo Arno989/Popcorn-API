@@ -11,7 +11,6 @@ namespace Popcorn
         {
             InitializeComponent();
             MainPage = new MainPage();
-            FlowListView.Init();
         }
 
         protected override void OnStart()

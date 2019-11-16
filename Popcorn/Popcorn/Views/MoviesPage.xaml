@@ -11,25 +11,26 @@
         <StackLayout VerticalOptions="FillAndExpand">
             <Grid>
                 <Editor x:Name="eSearch" Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search"></Editor>
-            <Picker Grid.Column="0" Grid.Row="1" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
-                <Picker.Items>
+                <Picker Grid.Column="0" Grid.Row="1" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
+                    <Picker.Items>
 
-                </Picker.Items>
-            </Picker>
+                    </Picker.Items>
+                </Picker>
                 <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Search" Clicked="btnSearch_Clicked"></Button>
             </Grid>
 
-            <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentView>
-                            <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
-                        </ContentView>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+            <Grid>
+                <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                            </ContentView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </Grid>
 
-            
             <Label x:Name="lblTitle" Text="title" Margin="16" TextColor="Black" FontSize="Large"></Label>
 
             <Grid>
@@ -39,7 +40,7 @@
             </Grid>
 
             <Button VerticalOptions="EndAndExpand" x:Name="btnTrailer" Clicked="btnTrailer_Clicked" Text="Trailer"></Button>
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

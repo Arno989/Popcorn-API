@@ -7,26 +7,33 @@
              x:Class="Popcorn.Views.AnimePage">
     <ContentPage.Content>
         <StackLayout>
-            <Picker x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
-                <Picker.Items>
+            <Grid>
+                <Editor x:Name="eSearch" Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search"></Editor>
+                <Picker Grid.Column="0" Grid.Row="1" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
+                    <Picker.Items>
 
-                </Picker.Items>
-            </Picker>
+                    </Picker.Items>
+                </Picker>
+                <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Search" Clicked="btnSearch_Clicked"></Button>
+            </Grid>
 
-            <ListView  Margin="0" x:Name="lvwContent" SeparatorColor="Transparent"  VerticalOptions="Start"  SeparatorVisibility="None" HorizontalOptions="Start" HasUnevenRows="True" VerticalScrollBarVisibility="Never">
-                <ListView.ItemTemplate>
+            <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
+                <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="750">
-                            <ContentView Margin="10">
-                                <Grid>
-                                <Image Aspect="AspectFill" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
-                                <Label Text="{Binding Title}" TextColor="black"></Label>
-                                </Grid>
-                            </ContentView>
-                        </ViewCell>
+                        <ContentView>
+                            <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                        </ContentView>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Label x:Name="lblTitle" Text="title" Margin="16" TextColor="Black" FontSize="Large"></Label>
+
+            <Grid>
+                <Label Grid.Row="0" HorizontalOptions="Start" x:Name="lblYear" Text="year" VerticalOptions="Start"/>
+                <Label Grid.Row="1" HorizontalOptions="Start" x:Name="lblSlug" Text="synopsis" VerticalOptions="Start"/>
+                <Label Grid.Row="2" HorizontalOptions="Start" x:Name="lblType" Text="runtime" VerticalOptions="Start"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

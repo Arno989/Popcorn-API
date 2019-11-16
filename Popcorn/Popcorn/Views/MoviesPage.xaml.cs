@@ -19,7 +19,6 @@ namespace Popcorn.Views
         public MoviesPage()
         {
             InitializeComponent();
-
             Init();
             pickSort.SelectedItem = "Trending";
         }
@@ -32,12 +31,11 @@ namespace Popcorn.Views
             }
         }
         
-
         private async Task ShowContent(String sort, String search)
         {
             List<Movie> content = await PopcornRepository.GetMoviesAsync(search, sort);
             cvContent.ItemsSource = content;
-            cvContent.CurrentItem = cvContent[0];
+            cvContent.CurrentItem = content[0];
         }
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,12 +44,6 @@ namespace Popcorn.Views
             {
                 ShowContent(pickSort.SelectedItem.ToString(), "");
             }
-        }
-
-        private void ViewCell_Tapped(object sender, EventArgs e)
-        {
-            ViewCell v = sender as ViewCell;
-            v.ForceUpdateSize();
         }
 
         private void cvContent_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
