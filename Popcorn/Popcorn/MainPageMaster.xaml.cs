@@ -36,7 +36,7 @@ namespace Popcorn
                 {
                     new MainPageMasterMenuItem { Id = 0, Title = "Movies"},
                     new MainPageMasterMenuItem { Id = 1, Title = "Series" },
-                    new MainPageMasterMenuItem { Id = 2, Title = "Anime" },
+                    //new MainPageMasterMenuItem { Id = 2, Title = "Anime" },
                 });
             }
 
@@ -66,6 +66,7 @@ namespace Popcorn
                     ((MasterDetailPage)Parent).Detail = new NavigationPage(new AnimePage());
                     break;
             }
+            ((MasterDetailPage)Parent).IsPresented = false;
         }
     }
 }

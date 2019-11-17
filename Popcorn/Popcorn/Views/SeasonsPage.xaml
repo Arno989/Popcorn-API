@@ -4,9 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Popcorn.Views.SeasonsPage">
+             x:Class="Popcorn.Views.SeasonsPage"
+             Visual="Material">
     <ContentPage.Content>
-        <Grid x:Name="gSeasons">
-        </Grid>
+        <ScrollView>
+            <Grid x:Name="gContent" BackgroundColor="LightGray" ColumnSpacing="1" RowSpacing="1">
+
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -4,6 +4,7 @@ using Popcorn.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,36 +13,21 @@ namespace Popcorn.Repositories
 {
     public class PopcornRepository
     {
+        #region ConstApiUrl's
         //all data provided from the following page: https://popcorntime.api-docs.io/api/welcome/introduction
-
-        #region ConstMovieApiUrl's
-        //parameters:
-        // --> page     (select which page you want to display)
-        // --> sort     (select which type of movies  you specificly want to display, all possible sort parameters will be hardcoded)
-        // --> order    (select which order you want the movies displayed, possible values are 1 and -1 this will invert the list of possible items)
-        // --> genre    (select which genre of movies you specificly want to display, all possible genres will be hardcoded)
-        // --> keywords (select all movies corresponding with the submited keywords, f.e 'harry potter' will return all movies with harry potter in the title)
-        //full url example: https://tv-v2.api-fetch.website/movies/1?sort=trending&order=1&genreGenre&keywords=harry%20potter
-
         const string MOVIEPAGE = "https://tv-v2.api-fetch.website/movies/";
         const string SPECIFICMOVIE = "https://tv-v2.api-fetch.website/movie/";
 
         public static readonly List<string> MOVIEGENRELIST = new List<string>() { "All", "Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "History", "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi", "Short", "Sport", "Thriller", "War", "Western" };
         public static readonly List<string> MOVIESORTLIST = new List<string>() { "Trending", "Popularity", "Last Added", "Year", "Title", "Rating" };
-        #endregion
-
-        #region ConstShowApiUrl's
-        //full url example: https://tv-v2.api-fetch.website/shows/1?sort=Trending&order=1&genre=&keywords=The
+        
 
         const string SHOWSPAGE = "https://tv-v2.api-fetch.website/shows/";
         const string SPECIFICSHOW = "https://tv-v2.api-fetch.website/show/";
 
         public static readonly List<string> SERIEGENRELIST = new List<string>() { "All", "Action", "Adventure", "Animation", "Children", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Game Show", "Home And Garden", "Horror", "Mini Series", "Mystery", "News", "Reality", "Romance", "Science Fiction", "Soap", "Special intrest", "Sport", "Suspence", "Talk Show", "Thriller", "Western" };
         public static readonly List<string> SERIESORTLIST = new List<string>() { "Trending", "Popularity", "Updated", "Year", "Name", "Rating" };
-        #endregion
-
-        #region ConstAnimeApiUrl's
-        //full url example: https://tv-v2.api-fetch.website/animes/1?sort=name&order=1&genre=&keywords=
+        
 
         const string ANIMEPAGE = "https://tv-v2.api-fetch.website/animes/";
         const string SPECIFICANIME = "https://tv-v2.api-fetch.website/anime/";
@@ -52,7 +38,6 @@ namespace Popcorn.Repositories
 
         //site to retrieve the images from: https://private-anon-12aa033b85-jikan.apiary-proxy.com/v3/anime/36862/pictures
         #endregion
-
 
 
         public static async Task<List<Movie>> GetMoviesAsync(string keyword, string sortby)
@@ -172,6 +157,7 @@ namespace Popcorn.Repositories
             }
         }
 
+        #region Anime
         public static async Task<List<Anime>> GetAnimeAsync(string keyword, string sortby)
         {
             try
@@ -296,6 +282,18 @@ namespace Popcorn.Repositories
                 throw ex;
             }
         }
+        #endregion
+
+        public static string FirstCharToUpper(string input)
+        {
+            switch (input)
+            {
+                case null: throw new ArgumentNullException(nameof(input));
+                case "": throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input));
+                default: return input.First().ToString().ToUpper() + input.Substring(1);
+            }
+        }
+
 
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {

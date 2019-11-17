@@ -15,6 +15,7 @@ namespace Popcorn.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SeriesPage : ContentPage
     {
+        Series se;
         public SeriesPage()
         {
             InitializeComponent();
@@ -39,20 +40,21 @@ namespace Popcorn.Views
 
         private async Task ShowDetails(String id)
         {
-            Series s = await PopcornRepository.GetSingleSeriesAsync(id);
-            lblYear.Text = s.Year;
-            lblSynopsis.Text = s.Synopsis;
-            lblRuntime.Text = s.Runtime;
-            lblStatus.Text = s.Status;
-            lblAirtime.Text = s.AirDay + " " + s.AirTime + " in " + s.Country;
-
-            // year
-            //synopsis
-            // runtime in mins
-            //status
-            //     if "returning series" air day + time
-            //last updated
-            //genres list
+            se = await PopcornRepository.GetSingleSeriesAsync(id);
+            lblTitle.Text = se.Title;
+            lblYear.Text = "First aired in " + se.Year;
+            lblSynopsis.Text = se.Synopsis;
+            lblRuntime.Text = "Avg Duration: " + se.Runtime + " minutes";
+            lblStatus.Text = PopcornRepository.FirstCharToUpper(se.Status);
+            btnSeasons.Text = (se.Seasons > 1? "View all " + se.Seasons + " seasons" : "View episodes");
+            switch (se.Status)
+            {
+                case "returning series":
+                    lblAirtime.Text = "Plays on " + se.AirDay + " at " + se.AirTime + " in " + se.Country.ToUpper();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,7 +67,6 @@ namespace Popcorn.Views
 
         private void cvContent_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
         {
-            lblTitle.Text = ((Series)e.CurrentItem).Title;
             ShowDetails(((Series)e.CurrentItem).Imdb_Id);
         }
 
@@ -76,7 +77,10 @@ namespace Popcorn.Views
 
         private void btnSeasons_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SeasonsPage((Series)cvContent.CurrentItem));
+            if(se.Seasons > 1)
+                Navigation.PushAsync(new SeasonsPage(se));
+            else
+                Navigation.PushAsync(new EpisodesPage(se , 1));
         }
     }
 }

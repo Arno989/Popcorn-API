@@ -5,42 +5,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Popcorn.Views.SeriesPage"
-             Title="Series">
+             Title="Series"
+             Visual="Material">
     <ContentPage.Content>
         <StackLayout>
-            <Grid>
-                <Editor x:Name="eSearch" Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search"></Editor>
-                <Picker Grid.Column="0" Grid.Row="1" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
+            <Grid VerticalOptions="End" Margin="-2, 0">
+                <Editor HeightRequest="50" Margin="2" x:Name="eSearch" Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search"></Editor>
+                <Picker HeightRequest="50" Margin="2" Grid.Column="0" Grid.Row="1" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
                     <Picker.Items>
 
                     </Picker.Items>
                 </Picker>
-                <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Search" Clicked="btnSearch_Clicked"></Button>
+                <Button HeightRequest="50" Margin="2" x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Search" Clicked="btnSearch_Clicked"></Button>
             </Grid>
 
-            <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentView>
-                            <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
-                        </ContentView>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-
-
-            <Label x:Name="lblTitle" Text="title" Margin="16" TextColor="Black" FontSize="Large"></Label>
-
-            <Grid>
-                <Label Grid.Row="0" HorizontalOptions="Start" x:Name="lblYear" Text="year" />
-                <Label Grid.Row="1" HorizontalOptions="Start" x:Name="lblSynopsis" Text="synopsis" />
-                <Label Grid.Row="2" HorizontalOptions="Start" x:Name="lblRuntime" Text="runtime" />
-                <Label Grid.Row="3" HorizontalOptions="Start" x:Name="lblStatus" Text="status" />
-                <Label Grid.Row="4" HorizontalOptions="Start" x:Name="lblAirtime" Text="airtime" />
-                <!--genres-->
+            <Grid VerticalOptions="Start">
+                <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"></Image>
+                            </ContentView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
             </Grid>
 
-            <Button VerticalOptions="EndAndExpand" x:Name="btnSeasons" Text="Seasons" Clicked="btnSeasons_Clicked"></Button>
+            <Grid VerticalOptions="Start" Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" HorizontalOptions="Fill" x:Name="lblTitle" Text="title" TextColor="Black" FontSize="Title"></Label>
+                <Label Grid.Row="2" HorizontalOptions="Fill" x:Name="lblYear" Text="year" FontSize="Body"/>
+                <Label Grid.Row="1" HorizontalOptions="Fill" x:Name="lblRuntime" Text="runtime" FontSize="Body"/>
+                <Label Grid.Row="3" HorizontalOptions="Fill" x:Name="lblSynopsis" Text="synopsis" FontSize="Body"/>
+                <Label Grid.Row="4" HorizontalOptions="Fill" x:Name="lblStatus" Text="status" FontSize="Body"/>
+                <Label Grid.Row="5" HorizontalOptions="Fill" x:Name="lblAirtime" Text="airtime" FontSize="Body"/>
+            </Grid>
+
+            <Button VerticalOptions="EndAndExpand" HeightRequest="65" Margin="-4" Grid.Column="1" x:Name="btnSeasons" Clicked="btnSeasons_Clicked" Text="Seasons" CornerRadius="0"></Button>
 
         </StackLayout>
     </ContentPage.Content>

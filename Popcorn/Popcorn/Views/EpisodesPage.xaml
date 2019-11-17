@@ -4,12 +4,42 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Popcorn.Views.EpisodesPage">
+             x:Class="Popcorn.Views.EpisodesPage"
+             Visual="Material">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid VerticalOptions="Start">
+                <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Image Aspect="AspectFit" Source="{Binding Poster.Uri.OriginalString}"></Image>
+                            </ContentView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </Grid>
+
+
+
+            <Grid VerticalOptions="Start" Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" HorizontalOptions="Fill" x:Name="lblTitle" Text="title" TextColor="Black" FontSize="Title"></Label>
+                <Label Grid.Row="1" HorizontalOptions="Fill" x:Name="lblEpisode" Text="episode" FontSize="Body"/>
+                <Label Grid.Row="2" HorizontalOptions="Fill" x:Name="lblSynopsis" Text="synopsis" FontSize="Body"/>
+                <Label Grid.Row="3" HorizontalOptions="Fill" x:Name="lblAirdate" Text="year" FontSize="Body"/>
+            </Grid>
+
+            <Button VerticalOptions="EndAndExpand" HeightRequest="65" Grid.Column="1" x:Name="btnDownload" Clicked="btnDownload_Clicked" Text="Download" Margin="-4" CornerRadius="0"></Button>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -3,6 +3,7 @@ using PopcornTime.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Popcorn.Models
 {
@@ -11,7 +12,7 @@ namespace Popcorn.Models
         [JsonProperty(propertyName: "torrents")]
         public EpisodeTorrent Torrents { get; set; }
 
-        [JsonProperty(propertyName: "first-aired")]
+        [JsonProperty(propertyName: "first_aired")]
         public double AirDate { get; set; }
         [JsonProperty(propertyName: "overview")]
         public String Synopsis { get; set; }
@@ -23,5 +24,7 @@ namespace Popcorn.Models
         public int SeasonNr { get; set; }
         [JsonProperty(propertyName: "tvbd_id")]
         public int tvdb_id { get; set; }
+
+        public ImageSource Poster { get; set; }
     }
 }

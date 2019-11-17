@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PopcornTime.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,8 +27,8 @@ namespace Popcorn.Models
         public List<string> Genres { get; set; }
 
         //step in objects
-        //[JsonProperty(propertyName: "torrents")]
-        //public MovieTorrent Torrent { get; set; }
+        [JsonProperty(propertyName: "torrents")]
+        public MovieTorrent Torrent { get; set; }
         [JsonProperty(propertyName: "images")]
         public Thumbnail Images { get; set; }
         //[JsonProperty(propertyName: "rating")]
