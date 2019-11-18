@@ -5,9 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Popcorn.Views.EpisodesPage"
+             Title="Episodes"
              Visual="Material">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="{StaticResource BackgroundColor}">
             <Grid VerticalOptions="Start">
                 <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
                     <CarouselView.ItemTemplate>
@@ -21,7 +22,6 @@
             </Grid>
 
 
-
             <Grid VerticalOptions="Start" Margin="16">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -32,13 +32,14 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" HorizontalOptions="Fill" x:Name="lblTitle" Text="title" TextColor="Black" FontSize="Title"></Label>
-                <Label Grid.Row="1" HorizontalOptions="Fill" x:Name="lblEpisode" Text="episode" FontSize="Body"/>
-                <Label Grid.Row="2" HorizontalOptions="Fill" x:Name="lblSynopsis" Text="synopsis" FontSize="Body"/>
-                <Label Grid.Row="3" HorizontalOptions="Fill" x:Name="lblAirdate" Text="year" FontSize="Body"/>
+                <Label Grid.Row="0" HorizontalOptions="Fill" x:Name="lblTitle" Text="title" FontSize="Title" TextColor="{StaticResource SecondaryTextColor}"></Label>
+                <Label Grid.Row="1" HorizontalOptions="Fill" x:Name="lblEpisode" Text="episode" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="2" HorizontalOptions="Fill" x:Name="lblSynopsis" Text="synopsis" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="3" HorizontalOptions="Fill" x:Name="lblAirdate" Text="year" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
             </Grid>
+            
 
-            <Button VerticalOptions="EndAndExpand" HeightRequest="65" Grid.Column="1" x:Name="btnDownload" Clicked="btnDownload_Clicked" Text="Download" Margin="-4" CornerRadius="0"></Button>
+            <Button VerticalOptions="EndAndExpand" HeightRequest="65" Grid.Column="1" x:Name="btnDownload" Clicked="btnDownload_Clicked" Text="Download" Margin="-4" CornerRadius="0" Style="{StaticResource btnStyle}"></Button>
 
         </StackLayout>
     </ContentPage.Content>

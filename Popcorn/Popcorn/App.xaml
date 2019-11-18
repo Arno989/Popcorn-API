@@ -9,56 +9,53 @@
         <ResourceDictionary>
 
             <!--Colors-->
-            <Color x:Key="BackgroundColor">#94114D</Color>
+            <Color x:Key="White">#EEEEEE</Color>
+            <Color x:Key="LightGray">#7C7C7C</Color>
+            <Color x:Key="Gray">#212121</Color>
+            <Color x:Key="Black">#000000</Color>
+
+            <Color x:Key="PrimaryColor">#3E1742</Color>
+            <Color x:Key="PrimaryTextColor">#EEEEEE</Color>
+
+            <Color x:Key="SecondaryColor">#EEEEEE</Color>
+            <Color x:Key="SecondaryTextColor">#212121</Color>
+            <Color x:Key="SecondaryTextColorLight">#333333</Color>
+
+            <Color x:Key="BackgroundColor">#EEEEEE</Color>
             <Color x:Key="HeaderColor">#3E1742</Color>
-            <Color x:Key="CustomNavbarTextColor">#3E1742</Color>
 
-            <Color x:Key="PrimaryColor">White</Color>
-            <Color x:Key="PrimaryTextColor">#3E1742</Color>
-
-            <Color x:Key="SecondaryColor">#3E1742</Color>
-            <Color x:Key="SecondaryTextColor">White</Color>
-
-            <Color x:Key="AccentColor">#22C5D5</Color>
-
-
-            <Style x:Key="MainTitleStyle" TargetType="Label">
+            <!--Styles-->
+            <Style x:Key="lblMenuTitle" TargetType="Label">
                 <Setter Property="FontSize" Value="Title"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"></Setter>
             </Style>
 
-            <Style x:Key="MenuItemStyle" TargetType="Label">
+            <Style x:Key="lblMenuItem" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"></Setter>
                 <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"></Setter>
             </Style>
 
-
-            <Style x:Key="MenuItemListStyle" TargetType="ListView">
+            <Style x:Key="gMenuHeader" TargetType="Grid">
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"></Setter>
             </Style>
 
-            <Style x:Key="MoviePage" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="#3E1742"></Setter>
+            <Style x:Key="lvwMenu" TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="{StaticResource Gray}"></Setter>
             </Style>
-
-
-
-                <!--views-->
-            <Style x:Key="MovieCarouselView" TargetType="CarouselView">
-            </Style>
-
             
-            <Style x:Key="SeriesPage" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="#3E1742"></Setter>
-            </Style>
-            <Style x:Key="SeasonPage" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="#3E1742"></Setter>
-            </Style>
-            <Style x:Key="MainPage" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="#3E1742"></Setter>
-            </Style>
-        </ResourceDictionary>
-        
 
+            <Style x:Key="btnStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"></Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource SecondaryTextColor}"></Setter>
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource Gray}"></Setter>
+                <Setter Property="PlaceholderColor" Value="{StaticResource LightGray}"></Setter>
+                <!--<Setter Property="BackgroundColor" Value="{StaticResource White}"></Setter>-->
+            </Style>
+            
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

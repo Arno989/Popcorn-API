@@ -22,6 +22,7 @@ namespace Popcorn.Views
             InitializeComponent();
             Init();
             pickSort.SelectedItem = "Trending";
+            pickGenre.SelectedItem = "All";
         }
 
         private void Init()
@@ -30,26 +31,39 @@ namespace Popcorn.Views
             {
                 pickSort.Items.Add(s);
             }
+
+            foreach (String s in PopcornRepository.MOVIEGENRELIST)
+            {
+                pickGenre.Items.Add(s);
+            }
         }
 
-        private async Task ShowContent(String sort, String search)
+        private async Task ShowContent(String sort, String search, String genre)
         {
-            List<Movie> content = await PopcornRepository.GetMoviesAsync(search, sort);
+            List<Movie> content = await PopcornRepository.GetMoviesAsync(search, sort, genre);
             cvContent.ItemsSource = content;
             cvContent.CurrentItem = content[0];
+        }
+        
+        private void pickGenre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (eSearch.Text == null || eSearch.Text == "")
+            {
+                ShowContent((pickSort.SelectedItem != null ? pickSort.SelectedItem.ToString() : "Trending"), "", pickGenre.SelectedItem.ToString());
+            }
         }
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(eSearch.Text == null)
+            if(eSearch.Text == null || eSearch.Text == "")
             {
-                ShowContent(pickSort.SelectedItem.ToString(), "");
+                ShowContent(pickSort.SelectedItem.ToString(), "", (pickGenre.SelectedItem != null? pickGenre.SelectedItem.ToString():"All"));
             }
         }
 
         private void btnSearch_Clicked(object sender, EventArgs e)
         {
-            ShowContent(pickSort.SelectedItem.ToString(), eSearch.Text);
+            ShowContent(pickSort.SelectedItem.ToString(), eSearch.Text, pickGenre.SelectedItem.ToString());
         }
 
         private void cvContent_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
@@ -89,6 +103,28 @@ namespace Popcorn.Views
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void eSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string currentText = e.NewTextValue;
+
+            string lastText = "";
+
+            if (!String.IsNullOrEmpty(e.OldTextValue))
+            {
+                lastText = e.OldTextValue;
+            }
+
+            var currentNumb = currentText.Length - currentText.Replace(Environment.NewLine, string.Empty).Length;
+            var lastNumb = lastText.Length - lastText.Replace(Environment.NewLine, string.Empty).Length;
+
+
+            if (currentNumb > lastNumb)
+            {
+                eSearch.Text = lastText;
+                eSearch.Unfocus();
             }
         }
     }

@@ -40,27 +40,28 @@ namespace Popcorn.Repositories
         #endregion
 
 
-        public static async Task<List<Movie>> GetMoviesAsync(string keyword, string sortby)
+        public static async Task<List<Movie>> GetMoviesAsync(string keyword, string sortby, string genre)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-                String url = string.Format("{0}{1}?sort={3}&keywords={2}", MOVIEPAGE, 1, keyword, sortby);
+                String url = string.Format("{0}{1}?sort={3}&genre={4}&keywords={2}", MOVIEPAGE, 1, keyword, sortby, genre);
                 String json = await client.GetStringAsync(url);
                 json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
+                List<Movie> Movies = new List<Movie>();
                 if (json != null)
                 {
-                    List<Movie> Movies = JsonConvert.DeserializeObject<List<Movie>>(json);
+                    Movies = JsonConvert.DeserializeObject<List<Movie>>(json);
                     Debug.WriteLine("Deserialize succesfull");
-                    return Movies;
                 }
                 else
                 {
                     Debug.WriteLine("Error, no data recieved.");
-                    return null;
+                    Movies.Add(new Movie(){Title = "No Results" });
                 }
+                return Movies;
             }
             catch (Exception ex)
             {
@@ -98,28 +99,29 @@ namespace Popcorn.Repositories
             }
         }
 
-        public static async Task<List<Series>> GetSeriesAsync(string keyword, string sortby)
+        public static async Task<List<Series>> GetSeriesAsync(string keyword, string sortby, string genre)
         {
             try
             {
                 HttpClient client = new HttpClient() { };
                 //client.DefaultRequestHeaders.Add("Accept", "application/json; charset=ut-8"); //Encoding.UTF8,
                 client.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json; charset=ut-8"); //Encoding.UTF8,
-                String url = string.Format("{0}{1}?sort={3}&keywords={2}", SHOWSPAGE, 1, keyword, sortby);
+                String url = string.Format("{0}{1}?sort={3}&genre={4}&keywords={2}", SHOWSPAGE, 1, keyword, sortby, genre);
                 String json = await client.GetStringAsync(url);
                 json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
+                List<Series> series = new List<Series>();
                 if (json != null)
                 {
-                    List<Series> Shows = JsonConvert.DeserializeObject<List<Series>>(json);
+                    series = JsonConvert.DeserializeObject<List<Series>>(json);
                     Debug.WriteLine("Deserialize succesfull");
-                    return Shows;
                 }
                 else
                 {
                     Debug.WriteLine("Error, no data recieved.");
-                    return null;
+                    series.Add(new Series() { Title = "No results" });
                 }
+                return series;
             }
             catch (Exception ex)
             {

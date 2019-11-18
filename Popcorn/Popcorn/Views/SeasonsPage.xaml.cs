@@ -30,6 +30,7 @@ namespace Popcorn.Views
                 se.BackgroundColor = Color.White;
                 se.FontSize = 18;
                 se.Padding = 16;
+                se.TextColor = (Color)Application.Current.Resources["SecondaryTextColorLight"];
                 se.VerticalOptions = LayoutOptions.CenterAndExpand;
 
                 var tapGestureRecognizer = new TapGestureRecognizer();

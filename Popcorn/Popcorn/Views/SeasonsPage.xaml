@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Popcorn.Views.SeasonsPage"
+             Title="Seasons"
              Visual="Material">
     <ContentPage.Content>
         <ScrollView>
-            <Grid x:Name="gContent" BackgroundColor="LightGray" ColumnSpacing="1" RowSpacing="1">
+            <Grid x:Name="gContent" BackgroundColor="{StaticResource BackgroundColor}" ColumnSpacing="1" RowSpacing="1">
 
             </Grid>
         </ScrollView>

@@ -11,8 +11,6 @@
     <None Remove="Assets\PopcornTimeLogo.png" />
     <None Remove="Assets\Rating.png" />
     <None Remove="Assets\Watched.png" />
-    <None Remove="Resources\values-v21\styles.xml" />
-    <None Remove="Resources\values\styles.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,11 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\values-v21\styles.xml" />
-    <Resource Include="Resources\values\styles.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\EpisodesPage.xaml.cs">
       <DependentUpon>EpisodesPage.xaml</DependentUpon>
     </Compile>
@@ -56,9 +49,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MasterPageDetail.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Themes\CustomTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AnimePage.xaml">

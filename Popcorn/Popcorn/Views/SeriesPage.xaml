@@ -8,16 +8,28 @@
              Title="Series"
              Visual="Material">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid VerticalOptions="End" Margin="-2, 0">
-                <Editor HeightRequest="50" Margin="2" x:Name="eSearch" Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search"></Editor>
-                <Picker HeightRequest="50" Margin="2" Grid.Column="0" Grid.Row="1" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged">
-                    <Picker.Items>
-
-                    </Picker.Items>
+        <StackLayout BackgroundColor="{StaticResource BackgroundColor}">
+            <Grid Margin="-4, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"></ColumnDefinition>
+                    <ColumnDefinition Width="50*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Picker Grid.Column="0" Grid.Row="0" x:Name="pickSort" SelectedIndexChanged="pickSort_SelectedIndexChanged" Margin="-2, 0, -2, -2" TextColor="{StaticResource SecondaryTextColor}">
+                    <Picker.Items/>
                 </Picker>
-                <Button HeightRequest="50" Margin="2" x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Search" Clicked="btnSearch_Clicked"></Button>
+                <Picker Grid.Column="1" Grid.Row="0" x:Name="pickGenre" SelectedIndexChanged="pickGenre_SelectedIndexChanged" Margin="-2, 0, -2, -2" TextColor="{StaticResource SecondaryTextColor}">
+                    <Picker.Items/>
+                </Picker>
+
+                <Entry x:Name="eSearch" Grid.Row="1" Grid.Column="0" Placeholder="Search"  Margin="-2, -2, -2, 0"  Style="{StaticResource entryStyle}" TextChanged="eSearch_TextChanged"></Entry>
+                <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Apply" Clicked="btnSearch_Clicked" Margin="-2, -2, -2, 0" Style="{StaticResource btnStyle}"></Button>
             </Grid>
+            
 
             <Grid VerticalOptions="Start">
                 <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
@@ -30,6 +42,7 @@
                     </CarouselView.ItemTemplate>
                 </CarouselView>
             </Grid>
+            
 
             <Grid VerticalOptions="Start" Margin="16">
                 <Grid.RowDefinitions>
@@ -43,15 +56,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" HorizontalOptions="Fill" x:Name="lblTitle" Text="title" TextColor="Black" FontSize="Title"></Label>
-                <Label Grid.Row="2" HorizontalOptions="Fill" x:Name="lblYear" Text="year" FontSize="Body"/>
-                <Label Grid.Row="1" HorizontalOptions="Fill" x:Name="lblRuntime" Text="runtime" FontSize="Body"/>
-                <Label Grid.Row="3" HorizontalOptions="Fill" x:Name="lblSynopsis" Text="synopsis" FontSize="Body"/>
-                <Label Grid.Row="4" HorizontalOptions="Fill" x:Name="lblStatus" Text="status" FontSize="Body"/>
-                <Label Grid.Row="5" HorizontalOptions="Fill" x:Name="lblAirtime" Text="airtime" FontSize="Body"/>
+                <Label Grid.Row="0" HorizontalOptions="Fill" x:Name="lblTitle" Text="title" FontSize="Title" TextColor="{StaticResource SecondaryTextColor}"/>
+                <Label Grid.Row="2" HorizontalOptions="Fill" x:Name="lblYear" Text="year" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="1" HorizontalOptions="Fill" x:Name="lblRuntime" Text="runtime" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="3" HorizontalOptions="Fill" x:Name="lblSynopsis" Text="synopsis" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="4" HorizontalOptions="Fill" x:Name="lblStatus" Text="status" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="5" HorizontalOptions="Fill" x:Name="lblAirtime" Text="airtime" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
             </Grid>
+            
 
-            <Button VerticalOptions="EndAndExpand" HeightRequest="65" Margin="-4" Grid.Column="1" x:Name="btnSeasons" Clicked="btnSeasons_Clicked" Text="Seasons" CornerRadius="0"></Button>
+            <Button VerticalOptions="EndAndExpand" HeightRequest="65" Margin="-4" Grid.Column="1" x:Name="btnSeasons" Clicked="btnSeasons_Clicked" Text="Seasons" CornerRadius="0" Style="{StaticResource btnStyle}"></Button>
 
         </StackLayout>
     </ContentPage.Content>

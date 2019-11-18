@@ -12,13 +12,13 @@
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}" 
               ItemSelected="MenuItemsListView_ItemSelected"
-                  Style="{StaticResource MenuItemListStyle}">
+                  Style="{StaticResource lvwMenu}">
               
             <ListView.Header>
-                <Grid BackgroundColor="{StaticResource HeaderColor}">
+                <Grid Style="{StaticResource gMenuHeader}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -31,7 +31,7 @@
               Grid.Column="1"
               Grid.Row="2"
               Text="Film Atlas"
-              Style="{StaticResource MainTitleStyle}"/>
+              Style="{StaticResource lblMenuTitle}"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
@@ -43,7 +43,7 @@
                     Text="{Binding Title}" 
                     d:Text="{Binding .}"
                     FontSize="24"
-                            Style="{StaticResource MenuItemStyle}"/>
+                            Style="{StaticResource lblMenuItem}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
