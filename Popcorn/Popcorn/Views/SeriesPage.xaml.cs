@@ -2,11 +2,7 @@
 using Popcorn.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -40,26 +36,22 @@ namespace Popcorn.Views
         private async Task ShowContent(String sort, String search, String genre)
         {
             List<Series> content = await PopcornRepository.GetSeriesAsync(search, sort, genre);
-            cvContent.ItemsSource = content;
-            cvContent.CurrentItem = content[0];
-        }
-
-        private async Task ShowDetails(String id)
-        {
-            se = await PopcornRepository.GetSingleSeriesAsync(id);
-            lblTitle.Text = se.Title;
-            lblYear.Text = "First aired in " + se.Year;
-            lblSynopsis.Text = se.Synopsis;
-            lblRuntime.Text = "Avg Duration: " + se.Runtime + " minutes";
-            lblStatus.Text = PopcornRepository.FirstCharToUpper(se.Status);
-            btnSeasons.Text = (se.Seasons > 1? "View all " + se.Seasons + " seasons" : "View episodes");
-            switch (se.Status)
+            if (content.Count != 0)
             {
-                case "returning series":
-                    lblAirtime.Text = "Plays on " + se.AirDay + " at " + se.AirTime + " in " + se.Country.ToUpper();
-                    break;
-                default:
-                    break;
+                gImages.IsVisible = true;
+                gContent.IsVisible = true;
+                gButtons.IsVisible = true;
+                gEmpty.IsVisible = false;
+
+                cvContent.ItemsSource = content;
+                cvContent.CurrentItem = content[0];
+            }
+            else
+            {
+                gImages.IsVisible = false;
+                gContent.IsVisible = false;
+                gButtons.IsVisible = false;
+                gEmpty.IsVisible = true;
             }
         }
 
@@ -80,14 +72,33 @@ namespace Popcorn.Views
             }
         }
 
+        private void btnSearch_Clicked(object sender, EventArgs e)
+        {
+            ShowContent(pickSort.SelectedItem.ToString(), eSearch.Text, pickGenre.SelectedItem.ToString());
+        }
+
         private void cvContent_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
         {
             ShowDetails(((Series)e.CurrentItem).Imdb_Id);
         }
 
-        private void btnSearch_Clicked(object sender, EventArgs e)
+        private async Task ShowDetails(String id)
         {
-            ShowContent(pickSort.SelectedItem.ToString(), eSearch.Text, pickGenre.SelectedItem.ToString());
+            se = await PopcornRepository.GetSingleSeriesAsync(id);
+            lblTitle.Text = se.Title;
+            lblYear.Text = "First aired in " + se.Year;
+            lblSynopsis.Text = se.Synopsis;
+            lblRuntime.Text = "Avg Duration: " + se.Runtime + " minutes";
+            lblStatus.Text = PopcornRepository.FirstCharToUpper(se.Status);
+            btnSeasons.Text = (se.Seasons > 1 ? "View all " + se.Seasons + " seasons" : "View episodes");
+            switch (se.Status)
+            {
+                case "returning series":
+                    lblAirtime.Text = "Plays on " + se.AirDay + " at " + se.AirTime + " in " + se.Country.ToUpper();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void btnSeasons_Clicked(object sender, EventArgs e)

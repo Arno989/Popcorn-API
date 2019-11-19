@@ -51,7 +51,7 @@ namespace Popcorn.Repositories
                 json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 List<Movie> Movies = new List<Movie>();
-                if (json != null)
+                if (json != "[]")
                 {
                     Movies = JsonConvert.DeserializeObject<List<Movie>>(json);
                     Debug.WriteLine("Deserialize succesfull");
@@ -59,7 +59,7 @@ namespace Popcorn.Repositories
                 else
                 {
                     Debug.WriteLine("Error, no data recieved.");
-                    Movies.Add(new Movie(){Title = "No Results" });
+                    //Movies.Add(new Movie(){Title = "No Results", Synopsis = "Try seachring with complete words.", Images = new Thumbnail() });
                 }
                 return Movies;
             }
@@ -111,7 +111,7 @@ namespace Popcorn.Repositories
                 json = System.Net.WebUtility.HtmlDecode(json);
                 Debug.WriteLine("Json: " + json);
                 List<Series> series = new List<Series>();
-                if (json != null)
+                if (json != "[]")
                 {
                     series = JsonConvert.DeserializeObject<List<Series>>(json);
                     Debug.WriteLine("Deserialize succesfull");
@@ -119,7 +119,7 @@ namespace Popcorn.Repositories
                 else
                 {
                     Debug.WriteLine("Error, no data recieved.");
-                    series.Add(new Series() { Title = "No results" });
+                    series.Add(new Series() { Title = "No results", Synopsis = "Try seachring with complete words.", Images = new Thumbnail()});
                 }
                 return series;
             }

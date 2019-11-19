@@ -21,16 +21,12 @@ namespace Popcorn.Models
         public Rating Rates { get; set; }
         [JsonProperty(propertyName: "images")]
         public Thumbnail Images { get; set; }
-
-        //lblSynopsis = s.;
-        //lblRuntime = ;
-        //lblStatus = ;
-        //lblRuntime = ;
+        // bijkomende info
         [JsonProperty(propertyName: "genres")]
         public List<string> Genres { get; set; }
         [JsonProperty(propertyName: "synopsis")]
         public string Synopsis { get; set; }
-        [JsonProperty(propertyName: "runtime")] //duration in mins
+        [JsonProperty(propertyName: "runtime")]
         public string Runtime { get; set; }
         [JsonProperty(propertyName: "status")]
         public string Status { get; set; }

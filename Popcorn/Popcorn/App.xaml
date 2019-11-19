@@ -21,6 +21,7 @@
             <Color x:Key="SecondaryTextColor">#212121</Color>
             <Color x:Key="SecondaryTextColorLight">#333333</Color>
 
+            <Color x:Key="BackgroundColorDark">#333333</Color>
             <Color x:Key="BackgroundColor">#EEEEEE</Color>
             <Color x:Key="HeaderColor">#3E1742</Color>
 
