@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Popcorn.Models
@@ -17,5 +18,12 @@ namespace Popcorn.Models
         public int Loved { get; set; }
         [JsonProperty(propertyName: "hated")]
         public int Hated { get; set; }
+    }
+
+    public class Model
+    {
+        public string Rating { get; set; }
+
+        public int Score { get; set; }
     }
 }

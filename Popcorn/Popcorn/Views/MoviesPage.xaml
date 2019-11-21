@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Popcorn"
              mc:Ignorable="d"
              x:Class="Popcorn.Views.MoviesPage"
              Title="Movies"
@@ -26,21 +27,32 @@
                     <Picker.Items/>
                 </Picker>
 
-                <Entry x:Name="eSearch" Grid.Row="1" Grid.Column="0" Placeholder="Search"  Margin="-2, -2, -2, 0"  Style="{StaticResource entryStyle}" TextChanged="eSearch_TextChanged"/>
+                <Entry x:Name="eSearch" Grid.Row="1" Grid.Column="0" Placeholder="Search"  Margin="-2, -2, -2, 0"  Style="{StaticResource entryStyle}"/>
                 <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Apply" Clicked="btnSearch_Clicked" Margin="-2, -2, -2, 0" Style="{StaticResource btnStyle}"/>
             </Grid>
 
 
             <Grid x:Name="gImages" VerticalOptions="Start">
-                <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <CarouselView Grid.ColumnSpan="2" HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <ContentView>
-                                <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"/>
+                                <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="cvTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
                             </ContentView>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
+                <Image Grid.Column="0" x:Name="imgLeft" VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Image Grid.Column="2" x:Name="imgRight" VerticalOptions="Center" HorizontalOptions="End"/>
             </Grid>
 
 
@@ -63,10 +75,10 @@
 
             <Grid x:Name="gButtons" VerticalOptions="EndAndExpand" HeightRequest="65" Margin="-4">
                 <Button Grid.Column="0" x:Name="btnTrailer" Clicked="btnTrailer_Clicked" Text="Trailer" Margin="-2, 0" CornerRadius="0" Style="{StaticResource btnStyle}"/>
-                <Button Grid.Column="1" x:Name="btnDownload" Clicked="btnDownload_Clicked" Text="Download" Margin="-2, 0" CornerRadius="0" Style="{StaticResource btnStyle}"/>
+                <Button Grid.Column="1" x:Name="btnDownload" Clicked="btnDownload_Clicked" Text="Details" Margin="-2, 0" CornerRadius="0" Style="{StaticResource btnStyle}"/>
             </Grid>
 
-            <Grid x:Name="gEmpty" VerticalOptions="CenterAndExpand">
+            <Grid x:Name="gEmpty" VerticalOptions="CenterAndExpand" IsVisible="False">
                 <Label Grid.Row="0" HorizontalOptions="Fill" FontSize="Title" TextColor="{StaticResource SecondaryTextColor}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="No Results"/>
                 <Label Grid.Row="1" HorizontalOptions="Fill" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="Try searching by a complete word."/>
             </Grid>

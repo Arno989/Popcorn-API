@@ -23,21 +23,19 @@ namespace Popcorn.Models
         public string Runtime { get; set; }
         [JsonProperty(propertyName: "trailer")]
         public string Trailer { get; set; }
+        [JsonProperty(propertyName: "released")]
+        public double Release { get; set; }
         [JsonProperty(propertyName: "genres")]
         public List<string> Genres { get; set; }
+        [JsonProperty(propertyName: "certification")]
+        public string Certification { get; set; }
 
         //step in objects
         [JsonProperty(propertyName: "torrents")]
         public MovieTorrent Torrent { get; set; }
         [JsonProperty(propertyName: "images")]
         public Thumbnail Images { get; set; }
-        //[JsonProperty(propertyName: "rating")]
-        //public Rating Rates { get; set; }
-
-        //Conversion from timespan to datetime needed.
-        //[JsonProperty(propertyName: "released")]
-        // public DateTime Released { get; set; }
-
-
+        [JsonProperty(propertyName: "rating")]
+        public Rating Rates { get; set; }
     }
 }

@@ -3,9 +3,11 @@ using Popcorn.Repositories;
 using PopcornTime.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Syncfusion.SfChart.XForms;
 
 namespace Popcorn.Views
 {
@@ -16,6 +18,15 @@ namespace Popcorn.Views
         {
             InitializeComponent();
             Init();
+            imgLeft.Source = ImageSource.FromResource($"Popcorn.Assets.baseline_keyboard_arrow_left_black_48.png");
+            imgRight.Source = ImageSource.FromResource($"Popcorn.Assets.baseline_keyboard_arrow_right_black_48.png");
+            //var tapGestureRecognizer = new TapGestureRecognizer();
+            //tapGestureRecognizer.Tapped += (s, e) =>
+            //{
+            //    cvContent.CurrentItem = 
+            //};
+            //imgLeft.GestureRecognizers.Add(tapGestureRecognizer);
+
             pickSort.SelectedItem = "Trending";
             pickGenre.SelectedItem = "All";
         }
@@ -54,7 +65,7 @@ namespace Popcorn.Views
                 gEmpty.IsVisible = true;
             }
         }
-        
+
         private void pickGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (eSearch.Text == null || eSearch.Text == "")
@@ -65,9 +76,9 @@ namespace Popcorn.Views
 
         private void pickSort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(eSearch.Text == null || eSearch.Text == "")
+            if (eSearch.Text == null || eSearch.Text == "")
             {
-                ShowContent(pickSort.SelectedItem.ToString(), "", (pickGenre.SelectedItem != null? pickGenre.SelectedItem.ToString():"All"));
+                ShowContent(pickSort.SelectedItem.ToString(), "", (pickGenre.SelectedItem != null ? pickGenre.SelectedItem.ToString() : "All"));
             }
         }
 
@@ -93,50 +104,12 @@ namespace Popcorn.Views
 
         private void btnDownload_Clicked(object sender, EventArgs e)
         {
-            ActionSheet();
+            Navigation.PushAsync(new DetailsPage((Movie)cvContent.CurrentItem));
         }
 
-        private async Task ActionSheet()
+        private void cvTapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            MovieTorrent t = ((Movie)cvContent.CurrentItem).Torrent;
-
-            string action = await DisplayActionSheet("Download Torrent", "Cancel", null, (t.En.P1080 != null ? "1080p" : "1080p (unavailable)"), (t.En.P720 != null ? "720p" : "720p (unavailable)"), (t.En.P480 != null ? "480p" : "480p (unavailable)"));
-            switch (action)
-            {
-                case "1080p":
-                    Device.OpenUri(new Uri(Convert.ToString(t.En.P1080.Url)));
-                    break;
-                case "720p":
-                    Device.OpenUri(new Uri(Convert.ToString(t.En.P720.Url)));
-                    break;
-                case "480p":
-                    Device.OpenUri(new Uri(Convert.ToString(t.En.P480.Url)));
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void eSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string currentText = e.NewTextValue;
-
-            string lastText = "";
-
-            if (!String.IsNullOrEmpty(e.OldTextValue))
-            {
-                lastText = e.OldTextValue;
-            }
-
-            var currentNumb = currentText.Length - currentText.Replace(Environment.NewLine, string.Empty).Length;
-            var lastNumb = lastText.Length - lastText.Replace(Environment.NewLine, string.Empty).Length;
-
-
-            if (currentNumb > lastNumb)
-            {
-                eSearch.Text = lastText;
-                eSearch.Unfocus();
-            }
+            Navigation.PushAsync(new DetailsPage((Movie)cvContent.CurrentItem));
         }
     }
 }

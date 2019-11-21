@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             mc:Ignorable="d"
+             x:Class="Popcorn.Views.DetailsPage"
+             Title="Details">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource BackgroundColor}">
+            <Image x:Name="imgPoster" VerticalOptions="Start" HeightRequest="350" Aspect="AspectFit" Margin="8"/>
+
+
+            <Grid x:Name="gContent" VerticalOptions="StartAndExpand" Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Row="0" HorizontalOptions="Fill" x:Name="lblTitle" FontSize="Title" TextColor="{StaticResource SecondaryTextColor}"/>
+                <Label Grid.Row="1" HorizontalOptions="Fill" x:Name="lblYear" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="2" HorizontalOptions="Fill" x:Name="lblContentRating" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Grid Grid.Row="1" Grid.RowSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" MinimumHeightRequest="100">
+                    <Grid WidthRequest="100" HorizontalOptions="End">
+                        <chart:SfChart x:Name="chRating" BackgroundColor="#00000000"/>
+                        <Label x:Name="lblPercentage" HorizontalOptions="Center" VerticalOptions="Center" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                    </Grid>
+                </Grid>
+                <Label Grid.Row="4" HorizontalOptions="Start" x:Name="lblSynopsis" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="5" HorizontalOptions="Fill" x:Name="lblRuntime" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}"/>
+                <Label Grid.Row="6" HorizontalOptions="Fill" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}" Text="Genres:"/>
+                <Grid Grid.Row="7" HorizontalOptions="Fill" x:Name="gGenres">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+            
+            
+
+            <Grid x:Name="gButtons" VerticalOptions="EndAndExpand" HeightRequest="65" Margin="-4">
+                <Button Grid.Column="0" x:Name="btnTrailer" Clicked="btnTrailer_Clicked" Text="Trailer" Margin="-2, 0" CornerRadius="0" Style="{StaticResource btnStyle}"/>
+                <Button Grid.Column="1" x:Name="btnDownload" Clicked="btnDownload_Clicked" Text="Download" Margin="-2, 0" CornerRadius="0" Style="{StaticResource btnStyle}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

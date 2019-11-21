@@ -305,5 +305,18 @@ namespace Popcorn.Repositories
             return dtDateTime;
         }
 
+        public static string GetFileSize(double byteCount)
+        {
+            string size = "0 Bytes";
+            if (byteCount >= 1073741824.0)
+                size = Math.Round(byteCount / 1073741824.0, 2) + " Gb";
+            else if (byteCount >= 1048576.0)
+                size = Math.Round(byteCount / 1048576.0, 2) + " Mb";
+            else if (byteCount >= 1024.0)
+                size = Math.Round(byteCount / 1024.0, 2) + " Kb";
+            
+            return size;
+        }
+
     }
 }

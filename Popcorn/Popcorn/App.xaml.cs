@@ -1,7 +1,4 @@
-﻿using DLToolkit.Forms.Controls;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace Popcorn
 {
@@ -10,6 +7,7 @@ namespace Popcorn
         public App()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTczMzg1QDMxMzcyZTMzMmUzMFh0bmhGSnMzMlExQ21uNnNzNmZKM0VVeTQwSDFXM28xUVdXWGxnQkRSbnc9");
             MainPage = new MainPage();
         }
 
