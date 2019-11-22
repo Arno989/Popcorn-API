@@ -14,19 +14,17 @@ namespace Popcorn.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MoviesPage : ContentPage
     {
+        List<Movie> Context = new List<Movie>();
+        int index = 0;
+
         public MoviesPage()
         {
             InitializeComponent();
             Init();
+
             imgLeft.Source = ImageSource.FromResource($"Popcorn.Assets.baseline_keyboard_arrow_left_black_48.png");
             imgRight.Source = ImageSource.FromResource($"Popcorn.Assets.baseline_keyboard_arrow_right_black_48.png");
-            //var tapGestureRecognizer = new TapGestureRecognizer();
-            //tapGestureRecognizer.Tapped += (s, e) =>
-            //{
-            //    cvContent.CurrentItem = 
-            //};
-            //imgLeft.GestureRecognizers.Add(tapGestureRecognizer);
-
+            
             pickSort.SelectedItem = "Trending";
             pickGenre.SelectedItem = "All";
         }
@@ -46,16 +44,17 @@ namespace Popcorn.Views
 
         private async Task ShowContent(String sort, String search, String genre)
         {
-            List<Movie> content = await PopcornRepository.GetMoviesAsync(search, sort, genre);
-            if (content.Count != 0)
+            Context = await PopcornRepository.GetMoviesAsync(search, sort, genre);
+            if (Context.Count != 0)
             {
                 gImages.IsVisible = true;
                 gContent.IsVisible = true;
                 gButtons.IsVisible = true;
                 gEmpty.IsVisible = false;
 
-                cvContent.ItemsSource = content;
-                cvContent.CurrentItem = content[0];
+                cvContent.ItemsSource = Context;
+                cvContent.CurrentItem = Context[0];
+                index = 0;
             }
             else
             {
@@ -110,6 +109,16 @@ namespace Popcorn.Views
         private void cvTapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new DetailsPage((Movie)cvContent.CurrentItem));
+        }
+
+        private void LeftTapped(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RightTapped(object sender, EventArgs e)
+        {
+
         }
     }
 }
