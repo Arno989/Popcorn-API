@@ -26,6 +26,7 @@ namespace Popcorn.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::NGraphics.Android.Custom.Resource.String.library_name = global::Popcorn.Droid.Resource.String.library_name;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar1 = global::Popcorn.Droid.Resource.Drawable.Avatar1;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar10 = global::Popcorn.Droid.Resource.Drawable.Avatar10;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar11 = global::Popcorn.Droid.Resource.Drawable.Avatar11;
@@ -9810,64 +9811,67 @@ namespace Popcorn.Droid
 			public const int hide_bottom_view_on_scroll_behavior = 2131558445;
 			
 			// aapt resource value: 0x7F0D002E
-			public const int mtrl_chip_close_icon_content_description = 2131558446;
+			public const int library_name = 2131558446;
 			
 			// aapt resource value: 0x7F0D002F
-			public const int password_toggle_content_description = 2131558447;
+			public const int mtrl_chip_close_icon_content_description = 2131558447;
 			
 			// aapt resource value: 0x7F0D0030
-			public const int path_password_eye = 2131558448;
+			public const int password_toggle_content_description = 2131558448;
 			
 			// aapt resource value: 0x7F0D0031
-			public const int path_password_eye_mask_strike_through = 2131558449;
+			public const int path_password_eye = 2131558449;
 			
 			// aapt resource value: 0x7F0D0032
-			public const int path_password_eye_mask_visible = 2131558450;
+			public const int path_password_eye_mask_strike_through = 2131558450;
 			
 			// aapt resource value: 0x7F0D0033
-			public const int path_password_strike_through = 2131558451;
+			public const int path_password_eye_mask_visible = 2131558451;
 			
 			// aapt resource value: 0x7F0D0034
-			public const int q = 2131558452;
+			public const int path_password_strike_through = 2131558452;
 			
 			// aapt resource value: 0x7F0D0035
-			public const int quarter = 2131558453;
+			public const int q = 2131558453;
 			
 			// aapt resource value: 0x7F0D0036
-			public const int search_menu_title = 2131558454;
+			public const int quarter = 2131558454;
 			
 			// aapt resource value: 0x7F0D0037
-			public const int sfchart_close_label = 2131558455;
+			public const int search_menu_title = 2131558455;
 			
 			// aapt resource value: 0x7F0D0038
-			public const int sfchart_decrease_label = 2131558456;
+			public const int sfchart_close_label = 2131558456;
 			
 			// aapt resource value: 0x7F0D0039
-			public const int sfchart_high_label = 2131558457;
+			public const int sfchart_decrease_label = 2131558457;
 			
 			// aapt resource value: 0x7F0D003A
-			public const int sfchart_increase_label = 2131558458;
+			public const int sfchart_high_label = 2131558458;
 			
 			// aapt resource value: 0x7F0D003B
-			public const int sfchart_low_label = 2131558459;
+			public const int sfchart_increase_label = 2131558459;
 			
 			// aapt resource value: 0x7F0D003C
-			public const int sfchart_open_label = 2131558460;
+			public const int sfchart_low_label = 2131558460;
 			
 			// aapt resource value: 0x7F0D003D
-			public const int sfchart_others_label = 2131558461;
+			public const int sfchart_open_label = 2131558461;
 			
 			// aapt resource value: 0x7F0D003E
-			public const int sfchart_total_label = 2131558462;
+			public const int sfchart_others_label = 2131558462;
 			
 			// aapt resource value: 0x7F0D003F
-			public const int status_bar_notification_info_overflow = 2131558463;
+			public const int sfchart_total_label = 2131558463;
 			
 			// aapt resource value: 0x7F0D0040
-			public const int w = 2131558464;
+			public const int status_bar_notification_info_overflow = 2131558464;
 			
 			// aapt resource value: 0x7F0D0041
-			public const int week = 2131558465;
+			public const int w = 2131558465;
+			
+			// aapt resource value: 0x7F0D0042
+			public const int week = 2131558466;
 			
 			static String()
 			{

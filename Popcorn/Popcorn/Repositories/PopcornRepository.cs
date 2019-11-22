@@ -6,13 +6,23 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Popcorn.Repositories
 {
     public class PopcornRepository
     {
+        /*
+        Known bugs:
+        When carouselview itemsource is changed the currentitemchanged event isn't triggered, nor does the currentitem object get updated 
+        until the index is changed which causes a bug on the search function
+
+        When position of carouselview gets changed in backend the swiped position does not update, so if one were to set the position from 0 to 5 and swipe +1 
+        the position would got to 1, ignoring the position set by the backend
+
+        The score graph in series detailpage is the same code as movie dietailpage, still the graph does not take its requested height like the movie detailpage
+        */
+
         #region ConstApiUrl's
         //all data provided from the following page: https://popcorntime.api-docs.io/api/welcome/introduction
         const string MOVIEPAGE = "https://tv-v2.api-fetch.website/movies/";
@@ -39,7 +49,7 @@ namespace Popcorn.Repositories
         //site to retrieve the images from: https://private-anon-12aa033b85-jikan.apiary-proxy.com/v3/anime/36862/pictures
         #endregion
 
-
+        #region Get data
         public static async Task<List<Movie>> GetMoviesAsync(string keyword, string sortby, string genre)
         {
             try
@@ -119,7 +129,7 @@ namespace Popcorn.Repositories
                 else
                 {
                     Debug.WriteLine("Error, no data recieved.");
-                    series.Add(new Series() { Title = "No results", Synopsis = "Try seachring with complete words.", Images = new Thumbnail()});
+                    series.Add(new Series() { Title = "No results", Synopsis = "Try seachring with complete words.", Images = new Thumbnail() });
                 }
                 return series;
             }
@@ -223,9 +233,6 @@ namespace Popcorn.Repositories
             }
         }
 
-
-
-
         public static async Task<Thumbnail> GetAnimeThubnailsAsync(string id)
         {
             try
@@ -285,6 +292,8 @@ namespace Popcorn.Repositories
             }
         }
         #endregion
+        #endregion
+
 
         public static string FirstCharToUpper(string input)
         {
@@ -295,7 +304,6 @@ namespace Popcorn.Repositories
                 default: return input.First().ToString().ToUpper() + input.Substring(1);
             }
         }
-
 
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {

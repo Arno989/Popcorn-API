@@ -28,6 +28,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.3.0.28" />
+    <PackageReference Include="Xam.Plugins.Forms.Svg" Version="1.0.0.27" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991210-pre2" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.4.0.991210-pre2" />
@@ -40,6 +41,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\SeriesDetailsPage.xaml.cs">
+      <DependentUpon>SeriesDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MoviesDetailsPage.xaml.cs">
+      <DependentUpon>MoviesDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\EpisodesPage.xaml.cs">
       <DependentUpon>EpisodesPage.xaml</DependentUpon>
     </Compile>
@@ -58,7 +65,7 @@
     <EmbeddedResource Update="Views\AnimePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\DetailsPage.xaml">
+    <EmbeddedResource Update="Views\MoviesDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\EpisodesPage.xaml">

@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PopcornTime.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Popcorn.Models
 {

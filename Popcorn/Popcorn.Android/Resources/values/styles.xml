@@ -2,9 +2,9 @@
 <resources>
 
   <style name="MainTheme" parent="MainTheme.Base">
-    <item name="colorPrimary">#3E1742</item>
-    <item name="colorPrimaryDark">#3E1742</item>
-    <item name="colorAccent">#3E1742</item>
+    <item name="colorPrimary">#212121</item>
+    <item name="colorPrimaryDark">#212121</item>
+    <item name="colorAccent">#212121</item>
 
     <item name="android:colorPressedHighlight">@color/ListViewSelected</item>
     <item name="android:colorLongPressedHighlight">@color/ListViewHighlighted</item>

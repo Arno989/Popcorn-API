@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="launcher_background">#212121</color>
+  <color name="launcher_background">#EEEEEE</color>
   <color name="colorPrimary">#2196F3</color>
   <color name="colorPrimaryDark">#1976D2</color>
   <color name="colorAccent">#FF4081</color>
-  <color name="ListViewSelected">#3E1742</color>
-  <color name="ListViewHighlighted">#FFFFFF</color>
-  <color name="splash_background">#333333</color>
+  <color name="ListViewSelected">#D1D1D1</color>
+  <color name="ListViewHighlighted">#EEEEEE</color>
+  <color name="splash_background">#EEEEEE</color>
 </resources>

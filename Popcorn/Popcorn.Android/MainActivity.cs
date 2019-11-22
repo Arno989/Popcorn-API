@@ -10,6 +10,7 @@ using Android.Support.V7.App;
 using Android.Util;
 using System.Threading.Tasks;
 using Android.Content;
+using SVG.Forms.Plugin.Droid;
 
 namespace Popcorn.Droid
 {
@@ -28,6 +29,7 @@ namespace Popcorn.Droid
             global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
+            SvgImageRenderer.Init();
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

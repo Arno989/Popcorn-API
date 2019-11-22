@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Popcorn.Models
 {
@@ -21,6 +19,7 @@ namespace Popcorn.Models
         public Rating Rates { get; set; }
         [JsonProperty(propertyName: "images")]
         public Thumbnail Images { get; set; }
+
         // bijkomende info
         [JsonProperty(propertyName: "genres")]
         public List<string> Genres { get; set; }
@@ -38,5 +37,7 @@ namespace Popcorn.Models
         public string Country { get; set; }
         [JsonProperty(propertyName: "episodes")]
         public List<Episode> Episodes { get; set; }
+        [JsonProperty(propertyName: "network")]
+        public string Network { get; set; }
     }
 }

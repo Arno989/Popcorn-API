@@ -14,7 +14,7 @@
             <Color x:Key="Gray">#212121</Color>
             <Color x:Key="Black">#000000</Color>
 
-            <Color x:Key="PrimaryColor">#3E1742</Color>
+            <Color x:Key="PrimaryColor">#212121</Color>
             <Color x:Key="PrimaryTextColor">#EEEEEE</Color>
 
             <Color x:Key="SecondaryColor">#EEEEEE</Color>
@@ -23,7 +23,7 @@
 
             <Color x:Key="BackgroundColorDark">#333333</Color>
             <Color x:Key="BackgroundColor">#EEEEEE</Color>
-            <Color x:Key="HeaderColor">#3E1742</Color>
+            <Color x:Key="HeaderColor">#212121</Color> <!--#3E1742-->
 
             <!--Styles-->
             <Style x:Key="lblMenuTitle" TargetType="Label">
@@ -33,7 +33,7 @@
 
             <Style x:Key="lblMenuItem" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"></Setter>
             </Style>
 
             <Style x:Key="gMenuHeader" TargetType="Grid">
@@ -41,7 +41,7 @@
             </Style>
 
             <Style x:Key="lvwMenu" TargetType="ListView">
-                <Setter Property="BackgroundColor" Value="{StaticResource Gray}"></Setter>
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"></Setter>
             </Style>
             
 

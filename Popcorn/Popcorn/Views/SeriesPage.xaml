@@ -26,17 +26,46 @@
                     <Picker.Items/>
                 </Picker>
 
-                <Entry x:Name="eSearch" Grid.Row="1" Grid.Column="0" Placeholder="Search"  Margin="-2, -2, -2, 0"  Style="{StaticResource entryStyle}" TextChanged="eSearch_TextChanged"/>
-                <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Apply" Clicked="btnSearch_Clicked" Margin="-2, -2, -2, 0" Style="{StaticResource btnStyle}"/>
+                <Entry x:Name="eSearch" Grid.Row="1" Grid.Column="0" Placeholder="Search"  Margin="-2, -2, -2, 0"  Style="{StaticResource entryStyle}" Completed="btnSearch_Clicked"/>
+                <Button x:Name="btnSearch" Grid.Column="1" Grid.Row="1" Text="Search" Clicked="btnSearch_Clicked" Margin="-2, -2, -2, 0" Style="{StaticResource btnStyle}"/>
             </Grid>
 
 
             <Grid x:Name="gImages" VerticalOptions="Start">
-                <CarouselView HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" VerticalOptions="Fill" HorizontalOptions="Fill" HasShadow="False" BackgroundColor="#00000000" InputTransparent="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LeftTapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame Grid.Column="2" VerticalOptions="Fill" HorizontalOptions="Fill" HasShadow="False" BackgroundColor="#00000000" InputTransparent="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="RightTapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Image Grid.Column="0" x:Name="imgLeft" VerticalOptions="Center" HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LeftTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Column="2" x:Name="imgRight" VerticalOptions="Center" HorizontalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="RightTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <CarouselView Grid.ColumnSpan="3" HeightRequest="350" x:Name="cvContent" PeekAreaInsets="0" NumberOfSideItems="0" CurrentItemChanged="cvContent_CurrentItemChanged" VerticalOptions="Start" HorizontalOptions="Start" ItemSizingStrategy="MeasureFirstItem" >
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <ContentView>
-                                <Image Aspect="AspectFit" Source="{Binding Images.Poster.Uri.OriginalString}"/>
+                                <Image Source="{Binding Images.Poster.Uri.OriginalString}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="cvTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
                             </ContentView>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
@@ -65,10 +94,11 @@
             </Grid>
 
             <Grid x:Name="gButtons" VerticalOptions="EndAndExpand" HeightRequest="65" Margin="-4">
-                <Button VerticalOptions="EndAndExpand" HeightRequest="65" Margin="-4" x:Name="btnSeasons" Clicked="btnSeasons_Clicked" Text="Seasons" CornerRadius="0" Style="{StaticResource btnStyle}"/>
+                <Button Grid.Column="0" x:Name="btnSeasons" Clicked="btnSeasons_Clicked" Text="Seasons" Margin="-2, 0" CornerRadius="0" Style="{StaticResource btnStyle}"/>
+                <Button Grid.Column="1" x:Name="btnDetails" Clicked="btnDetails_Clicked" Text="Details" Margin="-2, 0" CornerRadius="0" Style="{StaticResource btnStyle}"/>
             </Grid>
-            
-            <Grid x:Name="gEmpty" VerticalOptions="CenterAndExpand">
+
+            <Grid x:Name="gEmpty" VerticalOptions="CenterAndExpand" IsVisible="False">
                 <Label Grid.Row="0" HorizontalOptions="Fill" FontSize="Title" TextColor="{StaticResource SecondaryTextColor}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="No Results"/>
                 <Label Grid.Row="1" HorizontalOptions="Fill" FontSize="Body" TextColor="{StaticResource SecondaryTextColorLight}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="Try searching by a complete word."/>
             </Grid>
