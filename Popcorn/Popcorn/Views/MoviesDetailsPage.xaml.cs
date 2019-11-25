@@ -77,15 +77,15 @@ namespace Popcorn.Views
 
             string action = await DisplayActionSheet("Download Torrent", "Cancel", null, (t.En.P1080 != null ? s1080 : "1080p (unavailable)"), (t.En.P720 != null ? s720 : "720p (unavailable)"), (t.En.P480 != null ? s480 : "480p (unavailable)"));
             
-            if (action.Contains(s1080))
+            if (action == s1080)
             {
                 Device.OpenUri(new Uri(Convert.ToString(t.En.P1080.Url)));
             }
-            else if(action.Contains(s720))
+            else if(action == s720)
             {
                 Device.OpenUri(new Uri(Convert.ToString(t.En.P720.Url)));
             }
-            else if (action.Contains(s480))
+            else if (action == s480)
             {
                 Device.OpenUri(new Uri(Convert.ToString(t.En.P480.Url)));
             }

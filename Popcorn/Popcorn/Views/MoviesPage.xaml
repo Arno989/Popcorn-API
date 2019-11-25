@@ -37,16 +37,6 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="15*"/>
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" VerticalOptions="Fill" HorizontalOptions="Fill" HasShadow="False" BackgroundColor="#00000000" InputTransparent="False">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="LeftTapped"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
-                <Frame Grid.Column="2" VerticalOptions="Fill" HorizontalOptions="Fill" HasShadow="False" BackgroundColor="#00000000" InputTransparent="False">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="RightTapped"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
                 <Image Grid.Column="0" x:Name="imgLeft" VerticalOptions="Center" HorizontalOptions="Start">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LeftTapped"/>
@@ -70,6 +60,16 @@
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
+                <Frame Grid.Column="0" VerticalOptions="Fill" HorizontalOptions="Fill" HasShadow="False" BackgroundColor="#00000000" InputTransparent="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LeftTapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame Grid.Column="2" VerticalOptions="Fill" HorizontalOptions="Fill" HasShadow="False" BackgroundColor="#00000000" InputTransparent="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="RightTapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
             </Grid>
             
             <!--<Grid>

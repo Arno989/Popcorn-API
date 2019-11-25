@@ -121,6 +121,7 @@ namespace Popcorn.Views
         {
             if (cvContent.Position != 0)
                 cvContent.Position = cvContent.Position -= 1;
+            //cvContent.ScrollTo();
         }
 
         private void RightTapped(object sender, EventArgs e)

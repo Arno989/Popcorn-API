@@ -13,8 +13,8 @@ namespace Popcorn.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EpisodesPage : ContentPage
     {
-        List<Episode> Context = new List<Episode>();
         #region Init
+        List<Episode> Context = new List<Episode>();
         public EpisodesPage(List<Episode> context, int season, ImageSource poster)
         {
             InitializeComponent();
@@ -48,15 +48,15 @@ namespace Popcorn.Views
 
             string action = await DisplayActionSheet("Download Torrent", "Cancel", null, (t.P1080 != null ? s1080 : "1080p (unavailable)"), (t.P720 != null ? s720 : "720p (unavailable)"), (t.P480 != null ? s480 : "480p (unavailable)"));
 
-            if (action.Contains(s1080))
+            if (action == s1080)
             {
                 Device.OpenUri(new Uri(Convert.ToString(t.P1080.Url)));
             }
-            else if (action.Contains(s720))
+            else if (action == s720)
             {
                 Device.OpenUri(new Uri(Convert.ToString(t.P720.Url)));
             }
-            else if (action.Contains(s480))
+            else if (action == s480)
             {
                 Device.OpenUri(new Uri(Convert.ToString(t.P480.Url)));
             }
